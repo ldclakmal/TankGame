@@ -1,1 +1,6 @@
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\ClientApplication\ClientApplication\bin\Debug\ClientApplication.exe.config
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\ClientApplication\ClientApplication\obj\Debug\ClientApplication.csprojResolveAssemblyReference.cache
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\ClientApplication\ClientApplication\bin\Debug\ClientApplication.exe
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\ClientApplication\ClientApplication\bin\Debug\ClientApplication.pdb
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\ClientApplication\ClientApplication\obj\Debug\ClientApplication.exe
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\ClientApplication\ClientApplication\obj\Debug\ClientApplication.pdb
