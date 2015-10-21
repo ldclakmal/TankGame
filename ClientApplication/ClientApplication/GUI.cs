@@ -20,6 +20,7 @@ namespace ClientApplication
             InitializeComponent();
             txtCmd.Enabled = false;
             btnSend.Enabled = false;
+            txtDes.Enabled = false;
         }
 
         private void btnJoin_Click(object sender, EventArgs e)
@@ -28,15 +29,15 @@ namespace ClientApplication
             btnJoin.Enabled = false;
             txtCmd.Enabled = true;
             btnSend.Enabled = true;
-            startListening("127.0.0.1", 7000);
+            txtDes.Enabled = true;
+            Thread thread = new Thread(() => startListening("127.0.0.1", 7000));
+            thread.Start();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
             String cmd = txtCmd.Text;
             sendCmd("127.0.0.1", 6000, cmd);
-            //Thread thread = new Thread(() => startListening("127.0.0.1", 7000));
-            //thread.Start();
         }
 
         public void sendCmd(String ip, int port, String data)
@@ -69,29 +70,18 @@ namespace ClientApplication
 
         public void startListening(String ip, int port)
         {
+            //The socket that is listened to 
+            Socket connection = null;
             try
             {
-                //Creating listening Socket
-                this.listener = new TcpListener(IPAddress.Parse(ip), port);
-                //Starts listening
-                this.listener.Start();
+                if (listener == null)
+                {
+                    //Creating listening Socket
+                    this.listener = new TcpListener(IPAddress.Parse(ip), port);
+                    //Starts listening
+                    this.listener.Start();
+                }
                 //Establish connection upon client request
-                //listen();
-                Thread thread = new Thread(() => listen());
-                thread.Start();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("\nError at myPro:startListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void listen()
-        {
-            try
-            {
-                //The socket that is listened to 
-                Socket connection = null;
                 while (true)
                 {
                     //connection is connected socket
@@ -121,7 +111,7 @@ namespace ClientApplication
             }
             catch (Exception e)
             {
-                MessageBox.Show("\nError at myPro:listen().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("\nError at myPro:startListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
