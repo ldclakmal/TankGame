@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace ClientApplication
 {
@@ -17,17 +18,25 @@ namespace ClientApplication
         public GUI()
         {
             InitializeComponent();
+            txtCmd.Enabled = false;
+            btnSend.Enabled = false;
         }
 
-        private void metroButton1_Click(object sender, EventArgs e)
+        private void btnJoin_Click(object sender, EventArgs e)
         {
-            //Program myPro = new Program();
-            while (true)
-            {
-                String cmd = metroTextBox1.Text;
-                sendCmd("127.0.0.1", 6000, cmd);
-                startListening("127.0.0.1", 7000);
-            }
+            sendCmd("127.0.0.1", 6000, "JOIN#");
+            btnJoin.Enabled = false;
+            txtCmd.Enabled = true;
+            btnSend.Enabled = true;
+            startListening("127.0.0.1", 7000);
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            String cmd = txtCmd.Text;
+            sendCmd("127.0.0.1", 6000, cmd);
+            //Thread thread = new Thread(() => startListening("127.0.0.1", 7000));
+            //thread.Start();
         }
 
         public void sendCmd(String ip, int port, String data)
@@ -48,29 +57,41 @@ namespace ClientApplication
 
                     //writing to the port                
                     writer.Write(tempStr);
-                    //Console.WriteLine("\nData: " + data + " is written to " + ip + " on " + port);
                     writer.Close();
                     clientStream.Close();
                 }
             }
             catch (Exception e)
             {
-                //Console.WriteLine("\nError at myPro:sendCmd..... " + e.StackTrace);
-                MessageBox.Show("\nError at myPro:sendCmd..... " + e.StackTrace);
+                MessageBox.Show("\nError at myPro:sendCmd.....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public void startListening(String ip, int port)
         {
-            //The socket that is listened to 
-            Socket connection = null;
             try
             {
                 //Creating listening Socket
-                this.listener = new TcpListener(IPAddress.Parse("127.0.0.1"), 7000);
+                this.listener = new TcpListener(IPAddress.Parse(ip), port);
                 //Starts listening
                 this.listener.Start();
                 //Establish connection upon client request
+                //listen();
+                Thread thread = new Thread(() => listen());
+                thread.Start();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("\nError at myPro:startListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void listen()
+        {
+            try
+            {
+                //The socket that is listened to 
+                Socket connection = null;
                 while (true)
                 {
                     //connection is connected socket
@@ -94,16 +115,24 @@ namespace ClientApplication
                         String reply = Encoding.UTF8.GetString(inputStr.ToArray());
                         serverStream.Close();
                         string serverIp = s.Substring(0, s.IndexOf(":"));
-                        //Console.WriteLine(serverIp + ": " + reply);
-                        metroTextBox2.AppendText(serverIp + ": " + reply + "\n");
+                        AppendTextBox(serverIp + "$" + reply);
                     }
                 }
             }
             catch (Exception e)
             {
-                //Console.WriteLine("\nError at myPro:startListening()..... " + e.StackTrace);
-                MessageBox.Show("\nError at myPro:startListening()..... " + e.StackTrace);
+                MessageBox.Show("\nError at myPro:listen().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public void AppendTextBox(string msg)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<string>(AppendTextBox), new object[] { msg });
+                return;
+            }
+            txtDes.AppendText("\nServer IP " + msg.Split('$')[0] + " : " + msg.Split('$')[1] + "\n");
         }
     }
 }

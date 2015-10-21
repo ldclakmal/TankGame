@@ -28,66 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.metroTextBox1 = new MetroFramework.Controls.MetroTextBox();
-            this.metroTextBox2 = new MetroFramework.Controls.MetroTextBox();
+            this.btnSend = new MetroFramework.Controls.MetroButton();
+            this.txtCmd = new System.Windows.Forms.TextBox();
+            this.txtDes = new System.Windows.Forms.TextBox();
+            this.btnJoin = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
-            // metroButton1
+            // btnSend
             // 
-            this.metroButton1.Location = new System.Drawing.Point(464, 73);
-            this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(75, 23);
-            this.metroButton1.TabIndex = 0;
-            this.metroButton1.Text = "SEND";
-            this.metroButton1.UseSelectable = true;
-            this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            this.btnSend.Location = new System.Drawing.Point(695, 63);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.TabIndex = 0;
+            this.btnSend.Text = "SEND";
+            this.btnSend.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnSend.UseSelectable = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // metroTextBox1
+            // txtCmd
             // 
-            this.metroTextBox1.Lines = new string[0];
-            this.metroTextBox1.Location = new System.Drawing.Point(23, 73);
-            this.metroTextBox1.MaxLength = 32767;
-            this.metroTextBox1.Name = "metroTextBox1";
-            this.metroTextBox1.PasswordChar = '\0';
-            this.metroTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox1.SelectedText = "";
-            this.metroTextBox1.Size = new System.Drawing.Size(435, 23);
-            this.metroTextBox1.TabIndex = 1;
-            this.metroTextBox1.UseSelectable = true;
+            this.txtCmd.Location = new System.Drawing.Point(104, 66);
+            this.txtCmd.Name = "txtCmd";
+            this.txtCmd.Size = new System.Drawing.Size(585, 20);
+            this.txtCmd.TabIndex = 3;
             // 
-            // metroTextBox2
+            // txtDes
             // 
-            this.metroTextBox2.Lines = new string[0];
-            this.metroTextBox2.Location = new System.Drawing.Point(23, 114);
-            this.metroTextBox2.MaxLength = 32767;
-            this.metroTextBox2.Multiline = true;
-            this.metroTextBox2.Name = "metroTextBox2";
-            this.metroTextBox2.PasswordChar = '\0';
-            this.metroTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.metroTextBox2.SelectedText = "";
-            this.metroTextBox2.Size = new System.Drawing.Size(516, 163);
-            this.metroTextBox2.TabIndex = 2;
-            this.metroTextBox2.UseSelectable = true;
+            this.txtDes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDes.Location = new System.Drawing.Point(23, 95);
+            this.txtDes.Multiline = true;
+            this.txtDes.Name = "txtDes";
+            this.txtDes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDes.Size = new System.Drawing.Size(747, 253);
+            this.txtDes.TabIndex = 4;
+            // 
+            // btnJoin
+            // 
+            this.btnJoin.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnJoin.Location = new System.Drawing.Point(23, 63);
+            this.btnJoin.Name = "btnJoin";
+            this.btnJoin.Size = new System.Drawing.Size(75, 23);
+            this.btnJoin.TabIndex = 5;
+            this.btnJoin.Text = "JOIN";
+            this.btnJoin.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnJoin.UseSelectable = true;
+            this.btnJoin.Click += new System.EventHandler(this.btnJoin_Click);
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 300);
-            this.Controls.Add(this.metroTextBox2);
-            this.Controls.Add(this.metroTextBox1);
-            this.Controls.Add(this.metroButton1);
+            this.ClientSize = new System.Drawing.Size(793, 371);
+            this.Controls.Add(this.btnJoin);
+            this.Controls.Add(this.txtDes);
+            this.Controls.Add(this.txtCmd);
+            this.Controls.Add(this.btnSend);
             this.Name = "GUI";
             this.Text = "Tank Game";
+            this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private MetroFramework.Controls.MetroButton metroButton1;
-        private MetroFramework.Controls.MetroTextBox metroTextBox1;
-        private MetroFramework.Controls.MetroTextBox metroTextBox2;
+        private MetroFramework.Controls.MetroButton btnSend;
+        private System.Windows.Forms.TextBox txtCmd;
+        private System.Windows.Forms.TextBox txtDes;
+        private MetroFramework.Controls.MetroButton btnJoin;
     }
 }
