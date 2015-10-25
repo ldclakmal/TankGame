@@ -201,7 +201,7 @@ namespace ClientApplication
 
             }
             String cmd = txtCmd.Text;
-            //sendCmd("127.0.0.1", 6000, cmd);
+            sendCmd("127.0.0.1", 6000, cmd);
         }
 
         public void sendCmd(String ip, int port, String data)
