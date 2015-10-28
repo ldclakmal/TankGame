@@ -77,7 +77,6 @@ namespace ClientApplication
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-
             String command = txtCmd.Text.ToString();
             int orientation = tankOrientation[myTank];
             Label positionLabel = cellList[position[0]][position[1]];
@@ -195,14 +194,13 @@ namespace ClientApplication
 
                         }
                         break;
-
-
                 }
             }
             else if (command.Equals("SHOOT"))
             {
 
             }
+
             String cmd = txtCmd.Text;
             sendCmd("127.0.0.1", 6000, cmd);
         }
@@ -294,7 +292,6 @@ namespace ClientApplication
 
             if (details[0].Equals("I"))
             {
-
                 string[] brickCordicates = details[2].Split(';');
                 for (int i = 0; i < brickCordicates.Length; i++)
                 {
@@ -316,6 +313,13 @@ namespace ClientApplication
                     Label water = cellList[int.Parse(codinatesForEach[1].Split('#')[0])][int.Parse(codinatesForEach[0])];
                     water.Image = new Bitmap("water.jpg");
                 }
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Game Initiating : \n");
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Player Name : " + details[1] + "\n");
+                txtData.AppendText("Brick Co-ordinates : " + details[2] + "\n");
+                txtData.AppendText("Stone Co-ordinates : " + details[3] + "\n");
+                txtData.AppendText("Water Co-ordinates : " + details[4].Split('#')[0] + "\n \n");
             }
             else if (details[0].Equals("S"))
             {
@@ -344,18 +348,47 @@ namespace ClientApplication
                     tank.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     tankOrientation[myTank] = 3;
                 }
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Game Starting : \n");
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Player 1 Details : " + details[1] + "\n");
+                txtData.AppendText("Player 2 Details : " + details[2].Split('#')[0] + "\n \n");
             }
-
+            else if (details[0].Equals("G"))
+            {
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Global Updates : \n");
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Player 1 Location + Direction : " + details[1].Split(';')[1] + "\n");
+                txtData.AppendText("Player 1 Whether Shot : " + details[1].Split(';')[2] + "\n");
+                txtData.AppendText("Player 1 Health : " + details[1].Split(';')[3] + "\n");
+                txtData.AppendText("Player 1 Coins : " + details[1].Split(';')[4] + "\n");
+                txtData.AppendText("Player 1 Points : " + details[1].Split(';')[5] + "\n \n");
+                txtData.AppendText("Player 2 Location + Direction : " + details[2].Split(';')[1] + "\n");
+                txtData.AppendText("Player 2 Whether Shot : " + details[2].Split(';')[2] + "\n");
+                txtData.AppendText("Player 2 Health : " + details[2].Split(';')[3] + "\n");
+                txtData.AppendText("Player 2 Coins : " + details[2].Split(';')[4] + "\n");
+                txtData.AppendText("Player 2 Points : " + details[2].Split(';')[5] + "\n \n");
+                txtData.AppendText("X,Y Damage Levels : " + details[3].Split('#')[0] + "\n \n");
+            }
+            else if (details[0].Equals("C"))
+            {
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Coins : \n");
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Coin Co-ordinates : " + details[1] + "\n");
+                txtData.AppendText("Time of Coins : " + details[2] + "\n");
+                txtData.AppendText("Value of Coins : " + details[3].Split('#')[0] + "\n\n");
+            }
+            else if (details[0].Equals("L"))
+            {
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Life Packs : \n");
+                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("Life Pack Co-ordinates : " + details[1] + "\n");
+                txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
+            }
         }
-
-        private void txtCmd_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
 
     }
 }

@@ -133,6 +133,7 @@
             this.pos10_1 = new System.Windows.Forms.Label();
             this.pos1_1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtData = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,7 +154,6 @@
             this.txtCmd.Name = "txtCmd";
             this.txtCmd.Size = new System.Drawing.Size(847, 20);
             this.txtCmd.TabIndex = 3;
-            this.txtCmd.TextChanged += new System.EventHandler(this.txtCmd_TextChanged);
             // 
             // txtDes
             // 
@@ -162,7 +162,7 @@
             this.txtDes.Multiline = true;
             this.txtDes.Name = "txtDes";
             this.txtDes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDes.Size = new System.Drawing.Size(433, 355);
+            this.txtDes.Size = new System.Drawing.Size(433, 168);
             this.txtDes.TabIndex = 4;
             // 
             // btnJoin
@@ -179,6 +179,7 @@
             // 
             // pos1_2
             // 
+            this.pos1_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_2.Location = new System.Drawing.Point(580, 104);
             this.pos1_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -188,6 +189,7 @@
             // 
             // pos1_3
             // 
+            this.pos1_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_3.Location = new System.Drawing.Point(636, 104);
             this.pos1_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -197,6 +199,7 @@
             // 
             // pos1_4
             // 
+            this.pos1_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_4.Location = new System.Drawing.Point(692, 104);
             this.pos1_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -206,6 +209,7 @@
             // 
             // pos1_5
             // 
+            this.pos1_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_5.Location = new System.Drawing.Point(748, 104);
             this.pos1_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -215,6 +219,7 @@
             // 
             // pos1_6
             // 
+            this.pos1_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_6.Location = new System.Drawing.Point(804, 104);
             this.pos1_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -224,6 +229,7 @@
             // 
             // pos1_8
             // 
+            this.pos1_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_8.Location = new System.Drawing.Point(916, 104);
             this.pos1_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -233,6 +239,7 @@
             // 
             // pos1_9
             // 
+            this.pos1_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_9.Location = new System.Drawing.Point(972, 104);
             this.pos1_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -242,6 +249,7 @@
             // 
             // pos1_10
             // 
+            this.pos1_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_10.Location = new System.Drawing.Point(1028, 104);
             this.pos1_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -251,6 +259,7 @@
             // 
             // pos1_7
             // 
+            this.pos1_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos1_7.Location = new System.Drawing.Point(861, 104);
             this.pos1_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -260,6 +269,7 @@
             // 
             // pos2_10
             // 
+            this.pos2_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_10.Location = new System.Drawing.Point(1028, 163);
             this.pos2_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -269,6 +279,7 @@
             // 
             // pos2_9
             // 
+            this.pos2_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_9.Location = new System.Drawing.Point(972, 163);
             this.pos2_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -278,6 +289,7 @@
             // 
             // pos2_8
             // 
+            this.pos2_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_8.Location = new System.Drawing.Point(916, 163);
             this.pos2_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -287,6 +299,7 @@
             // 
             // pos2_7
             // 
+            this.pos2_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_7.Location = new System.Drawing.Point(860, 163);
             this.pos2_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -296,6 +309,7 @@
             // 
             // pos2_6
             // 
+            this.pos2_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_6.Location = new System.Drawing.Point(804, 163);
             this.pos2_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -305,6 +319,7 @@
             // 
             // pos2_5
             // 
+            this.pos2_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_5.Location = new System.Drawing.Point(748, 163);
             this.pos2_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -314,6 +329,7 @@
             // 
             // pos2_4
             // 
+            this.pos2_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_4.Location = new System.Drawing.Point(692, 163);
             this.pos2_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -323,6 +339,7 @@
             // 
             // pos2_3
             // 
+            this.pos2_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_3.Location = new System.Drawing.Point(636, 163);
             this.pos2_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -332,6 +349,7 @@
             // 
             // pos2_2
             // 
+            this.pos2_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_2.Location = new System.Drawing.Point(580, 163);
             this.pos2_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -341,6 +359,7 @@
             // 
             // pos2_1
             // 
+            this.pos2_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos2_1.Location = new System.Drawing.Point(524, 163);
             this.pos2_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos2_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -350,6 +369,7 @@
             // 
             // pos3_10
             // 
+            this.pos3_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_10.Location = new System.Drawing.Point(1028, 222);
             this.pos3_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -359,6 +379,7 @@
             // 
             // pos3_9
             // 
+            this.pos3_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_9.Location = new System.Drawing.Point(972, 222);
             this.pos3_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -368,6 +389,7 @@
             // 
             // pos3_8
             // 
+            this.pos3_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_8.Location = new System.Drawing.Point(916, 222);
             this.pos3_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -377,6 +399,7 @@
             // 
             // pos3_7
             // 
+            this.pos3_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_7.Location = new System.Drawing.Point(860, 222);
             this.pos3_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -386,6 +409,7 @@
             // 
             // pos3_6
             // 
+            this.pos3_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_6.Location = new System.Drawing.Point(804, 222);
             this.pos3_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -395,6 +419,7 @@
             // 
             // pos3_5
             // 
+            this.pos3_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_5.Location = new System.Drawing.Point(748, 222);
             this.pos3_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -404,6 +429,7 @@
             // 
             // pos3_4
             // 
+            this.pos3_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_4.Location = new System.Drawing.Point(692, 222);
             this.pos3_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -413,6 +439,7 @@
             // 
             // pos3_3
             // 
+            this.pos3_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_3.Location = new System.Drawing.Point(636, 222);
             this.pos3_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -422,6 +449,7 @@
             // 
             // pos3_2
             // 
+            this.pos3_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_2.Location = new System.Drawing.Point(580, 222);
             this.pos3_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -431,6 +459,7 @@
             // 
             // pos3_1
             // 
+            this.pos3_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos3_1.Location = new System.Drawing.Point(524, 222);
             this.pos3_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos3_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -440,6 +469,7 @@
             // 
             // pos6_10
             // 
+            this.pos6_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_10.Location = new System.Drawing.Point(1028, 400);
             this.pos6_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -449,6 +479,7 @@
             // 
             // pos6_9
             // 
+            this.pos6_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_9.Location = new System.Drawing.Point(972, 400);
             this.pos6_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -458,6 +489,7 @@
             // 
             // pos6_8
             // 
+            this.pos6_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_8.Location = new System.Drawing.Point(916, 400);
             this.pos6_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -467,6 +499,7 @@
             // 
             // pos6_7
             // 
+            this.pos6_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_7.Location = new System.Drawing.Point(860, 400);
             this.pos6_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -476,6 +509,7 @@
             // 
             // pos6_6
             // 
+            this.pos6_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_6.Location = new System.Drawing.Point(804, 400);
             this.pos6_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -485,6 +519,7 @@
             // 
             // pos6_5
             // 
+            this.pos6_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_5.Location = new System.Drawing.Point(748, 400);
             this.pos6_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -494,6 +529,7 @@
             // 
             // pos6_4
             // 
+            this.pos6_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_4.Location = new System.Drawing.Point(692, 400);
             this.pos6_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -503,6 +539,7 @@
             // 
             // pos6_3
             // 
+            this.pos6_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_3.Location = new System.Drawing.Point(636, 400);
             this.pos6_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -512,6 +549,7 @@
             // 
             // pos6_2
             // 
+            this.pos6_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_2.Location = new System.Drawing.Point(580, 400);
             this.pos6_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -521,6 +559,7 @@
             // 
             // pos6_1
             // 
+            this.pos6_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos6_1.Location = new System.Drawing.Point(524, 400);
             this.pos6_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos6_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -530,6 +569,7 @@
             // 
             // pos5_10
             // 
+            this.pos5_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_10.Location = new System.Drawing.Point(1028, 341);
             this.pos5_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -539,6 +579,7 @@
             // 
             // pos5_9
             // 
+            this.pos5_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_9.Location = new System.Drawing.Point(972, 341);
             this.pos5_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -548,6 +589,7 @@
             // 
             // pos5_8
             // 
+            this.pos5_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_8.Location = new System.Drawing.Point(916, 341);
             this.pos5_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -557,6 +599,7 @@
             // 
             // pos5_7
             // 
+            this.pos5_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_7.Location = new System.Drawing.Point(860, 341);
             this.pos5_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -566,6 +609,7 @@
             // 
             // pos5_6
             // 
+            this.pos5_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_6.Location = new System.Drawing.Point(804, 341);
             this.pos5_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -575,6 +619,7 @@
             // 
             // pos5_5
             // 
+            this.pos5_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_5.Location = new System.Drawing.Point(748, 341);
             this.pos5_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -584,6 +629,7 @@
             // 
             // pos5_4
             // 
+            this.pos5_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_4.Location = new System.Drawing.Point(692, 341);
             this.pos5_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -593,6 +639,7 @@
             // 
             // pos5_3
             // 
+            this.pos5_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_3.Location = new System.Drawing.Point(636, 341);
             this.pos5_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -602,6 +649,7 @@
             // 
             // pos5_2
             // 
+            this.pos5_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_2.Location = new System.Drawing.Point(580, 341);
             this.pos5_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -611,6 +659,7 @@
             // 
             // pos5_1
             // 
+            this.pos5_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos5_1.Location = new System.Drawing.Point(524, 341);
             this.pos5_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos5_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -620,6 +669,7 @@
             // 
             // pos4_10
             // 
+            this.pos4_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_10.Location = new System.Drawing.Point(1028, 282);
             this.pos4_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -629,6 +679,7 @@
             // 
             // pos4_9
             // 
+            this.pos4_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_9.Location = new System.Drawing.Point(972, 282);
             this.pos4_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -638,6 +689,7 @@
             // 
             // pos4_8
             // 
+            this.pos4_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_8.Location = new System.Drawing.Point(916, 282);
             this.pos4_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -647,6 +699,7 @@
             // 
             // pos4_7
             // 
+            this.pos4_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_7.Location = new System.Drawing.Point(860, 282);
             this.pos4_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -656,6 +709,7 @@
             // 
             // pos4_6
             // 
+            this.pos4_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_6.Location = new System.Drawing.Point(804, 282);
             this.pos4_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -665,6 +719,7 @@
             // 
             // pos4_5
             // 
+            this.pos4_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_5.Location = new System.Drawing.Point(748, 282);
             this.pos4_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -674,6 +729,7 @@
             // 
             // pos4_4
             // 
+            this.pos4_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_4.Location = new System.Drawing.Point(692, 282);
             this.pos4_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -683,6 +739,7 @@
             // 
             // pos4_3
             // 
+            this.pos4_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_3.Location = new System.Drawing.Point(636, 282);
             this.pos4_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -692,6 +749,7 @@
             // 
             // pos4_2
             // 
+            this.pos4_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_2.Location = new System.Drawing.Point(580, 282);
             this.pos4_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -701,6 +759,7 @@
             // 
             // pos4_1
             // 
+            this.pos4_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos4_1.Location = new System.Drawing.Point(524, 282);
             this.pos4_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos4_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -710,6 +769,7 @@
             // 
             // pos9_10
             // 
+            this.pos9_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_10.Location = new System.Drawing.Point(1028, 578);
             this.pos9_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -719,6 +779,7 @@
             // 
             // pos9_9
             // 
+            this.pos9_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_9.Location = new System.Drawing.Point(972, 578);
             this.pos9_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -728,6 +789,7 @@
             // 
             // pos9_8
             // 
+            this.pos9_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_8.Location = new System.Drawing.Point(916, 578);
             this.pos9_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -737,6 +799,7 @@
             // 
             // pos9_7
             // 
+            this.pos9_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_7.Location = new System.Drawing.Point(860, 578);
             this.pos9_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -746,6 +809,7 @@
             // 
             // pos9_6
             // 
+            this.pos9_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_6.Location = new System.Drawing.Point(804, 578);
             this.pos9_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -755,6 +819,7 @@
             // 
             // pos9_5
             // 
+            this.pos9_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_5.Location = new System.Drawing.Point(748, 578);
             this.pos9_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -764,6 +829,7 @@
             // 
             // pos9_4
             // 
+            this.pos9_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_4.Location = new System.Drawing.Point(692, 578);
             this.pos9_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -773,6 +839,7 @@
             // 
             // pos9_3
             // 
+            this.pos9_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_3.Location = new System.Drawing.Point(636, 578);
             this.pos9_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -782,6 +849,7 @@
             // 
             // pos9_2
             // 
+            this.pos9_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_2.Location = new System.Drawing.Point(580, 578);
             this.pos9_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -791,6 +859,7 @@
             // 
             // pos9_1
             // 
+            this.pos9_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos9_1.Location = new System.Drawing.Point(524, 578);
             this.pos9_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos9_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -800,6 +869,7 @@
             // 
             // pos8_10
             // 
+            this.pos8_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_10.Location = new System.Drawing.Point(1028, 519);
             this.pos8_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -809,6 +879,7 @@
             // 
             // pos8_9
             // 
+            this.pos8_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_9.Location = new System.Drawing.Point(972, 519);
             this.pos8_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -818,6 +889,7 @@
             // 
             // pos8_8
             // 
+            this.pos8_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_8.Location = new System.Drawing.Point(916, 519);
             this.pos8_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -827,6 +899,7 @@
             // 
             // pos8_7
             // 
+            this.pos8_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_7.Location = new System.Drawing.Point(860, 519);
             this.pos8_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -836,6 +909,7 @@
             // 
             // pos8_6
             // 
+            this.pos8_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_6.Location = new System.Drawing.Point(804, 519);
             this.pos8_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -845,6 +919,7 @@
             // 
             // pos8_5
             // 
+            this.pos8_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_5.Location = new System.Drawing.Point(748, 519);
             this.pos8_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -854,6 +929,7 @@
             // 
             // pos8_4
             // 
+            this.pos8_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_4.Location = new System.Drawing.Point(692, 519);
             this.pos8_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -863,6 +939,7 @@
             // 
             // pos8_3
             // 
+            this.pos8_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_3.Location = new System.Drawing.Point(636, 519);
             this.pos8_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -872,6 +949,7 @@
             // 
             // pos8_2
             // 
+            this.pos8_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_2.Location = new System.Drawing.Point(580, 519);
             this.pos8_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -881,6 +959,7 @@
             // 
             // pos8_1
             // 
+            this.pos8_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos8_1.Location = new System.Drawing.Point(524, 519);
             this.pos8_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos8_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -890,6 +969,7 @@
             // 
             // pos7_10
             // 
+            this.pos7_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_10.Location = new System.Drawing.Point(1028, 460);
             this.pos7_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -899,6 +979,7 @@
             // 
             // pos7_9
             // 
+            this.pos7_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_9.Location = new System.Drawing.Point(972, 460);
             this.pos7_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -908,6 +989,7 @@
             // 
             // pos7_8
             // 
+            this.pos7_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_8.Location = new System.Drawing.Point(916, 460);
             this.pos7_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -917,6 +999,7 @@
             // 
             // pos7_7
             // 
+            this.pos7_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_7.Location = new System.Drawing.Point(860, 460);
             this.pos7_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -926,6 +1009,7 @@
             // 
             // pos7_6
             // 
+            this.pos7_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_6.Location = new System.Drawing.Point(804, 460);
             this.pos7_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -935,6 +1019,7 @@
             // 
             // pos7_5
             // 
+            this.pos7_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_5.Location = new System.Drawing.Point(748, 460);
             this.pos7_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -944,6 +1029,7 @@
             // 
             // pos7_4
             // 
+            this.pos7_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_4.Location = new System.Drawing.Point(692, 460);
             this.pos7_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -953,6 +1039,7 @@
             // 
             // pos7_3
             // 
+            this.pos7_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_3.Location = new System.Drawing.Point(636, 460);
             this.pos7_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -962,6 +1049,7 @@
             // 
             // pos7_2
             // 
+            this.pos7_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_2.Location = new System.Drawing.Point(580, 460);
             this.pos7_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -971,6 +1059,7 @@
             // 
             // pos7_1
             // 
+            this.pos7_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos7_1.Location = new System.Drawing.Point(524, 460);
             this.pos7_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos7_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -980,6 +1069,7 @@
             // 
             // pos10_10
             // 
+            this.pos10_10.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_10.Location = new System.Drawing.Point(1028, 637);
             this.pos10_10.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_10.MinimumSize = new System.Drawing.Size(50, 50);
@@ -989,6 +1079,7 @@
             // 
             // pos10_9
             // 
+            this.pos10_9.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_9.Location = new System.Drawing.Point(972, 637);
             this.pos10_9.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_9.MinimumSize = new System.Drawing.Size(50, 50);
@@ -998,6 +1089,7 @@
             // 
             // pos10_8
             // 
+            this.pos10_8.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_8.Location = new System.Drawing.Point(916, 637);
             this.pos10_8.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_8.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1007,6 +1099,7 @@
             // 
             // pos10_7
             // 
+            this.pos10_7.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_7.Location = new System.Drawing.Point(860, 637);
             this.pos10_7.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_7.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1016,6 +1109,7 @@
             // 
             // pos10_6
             // 
+            this.pos10_6.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_6.Location = new System.Drawing.Point(804, 637);
             this.pos10_6.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_6.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1025,6 +1119,7 @@
             // 
             // pos10_5
             // 
+            this.pos10_5.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_5.Location = new System.Drawing.Point(748, 637);
             this.pos10_5.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_5.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1034,6 +1129,7 @@
             // 
             // pos10_4
             // 
+            this.pos10_4.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_4.Location = new System.Drawing.Point(692, 637);
             this.pos10_4.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_4.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1043,6 +1139,7 @@
             // 
             // pos10_3
             // 
+            this.pos10_3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_3.Location = new System.Drawing.Point(636, 637);
             this.pos10_3.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_3.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1052,6 +1149,7 @@
             // 
             // pos10_2
             // 
+            this.pos10_2.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_2.Location = new System.Drawing.Point(580, 637);
             this.pos10_2.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_2.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1061,6 +1159,7 @@
             // 
             // pos10_1
             // 
+            this.pos10_1.BackColor = System.Drawing.SystemColors.Highlight;
             this.pos10_1.Location = new System.Drawing.Point(524, 637);
             this.pos10_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos10_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1070,8 +1169,8 @@
             // 
             // pos1_1
             // 
-            this.pos1_1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pos1_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pos1_1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pos1_1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.pos1_1.Location = new System.Drawing.Point(524, 104);
             this.pos1_1.MaximumSize = new System.Drawing.Size(50, 50);
             this.pos1_1.MinimumSize = new System.Drawing.Size(50, 50);
@@ -1090,11 +1189,20 @@
             this.panel1.Size = new System.Drawing.Size(1037, 35);
             this.panel1.TabIndex = 109;
             // 
+            // txtData
+            // 
+            this.txtData.Location = new System.Drawing.Point(41, 282);
+            this.txtData.Multiline = true;
+            this.txtData.Name = "txtData";
+            this.txtData.Size = new System.Drawing.Size(433, 405);
+            this.txtData.TabIndex = 110;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 710);
+            this.Controls.Add(this.txtData);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pos10_10);
             this.Controls.Add(this.pos10_9);
@@ -1314,5 +1422,6 @@
         private System.Windows.Forms.Label pos10_1;
         private System.Windows.Forms.Label pos1_1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtData;
     }
 }
