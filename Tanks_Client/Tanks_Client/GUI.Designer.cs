@@ -134,6 +134,7 @@
             this.pos1_1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtData = new System.Windows.Forms.TextBox();
+            this.btnStop = new MetroFramework.Controls.MetroButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,9 +151,9 @@
             // 
             // txtCmd
             // 
-            this.txtCmd.Location = new System.Drawing.Point(94, 6);
+            this.txtCmd.Location = new System.Drawing.Point(175, 6);
             this.txtCmd.Name = "txtCmd";
-            this.txtCmd.Size = new System.Drawing.Size(847, 20);
+            this.txtCmd.Size = new System.Drawing.Size(766, 20);
             this.txtCmd.TabIndex = 3;
             // 
             // txtDes
@@ -1181,6 +1182,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.panel1.Controls.Add(this.btnStop);
             this.panel1.Controls.Add(this.btnJoin);
             this.panel1.Controls.Add(this.txtCmd);
             this.panel1.Controls.Add(this.btnSend);
@@ -1191,11 +1193,26 @@
             // 
             // txtData
             // 
+            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtData.Location = new System.Drawing.Point(41, 282);
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
+            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtData.Size = new System.Drawing.Size(433, 405);
             this.txtData.TabIndex = 110;
+            // 
+            // btnStop
+            // 
+            this.btnStop.BackColor = System.Drawing.Color.Red;
+            this.btnStop.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnStop.Location = new System.Drawing.Point(94, 6);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStop.TabIndex = 6;
+            this.btnStop.Text = "STOP";
+            this.btnStop.UseSelectable = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // GUI
             // 
@@ -1424,5 +1441,6 @@
         private System.Windows.Forms.Label pos1_1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtData;
+        private MetroFramework.Controls.MetroButton btnStop;
     }
 }

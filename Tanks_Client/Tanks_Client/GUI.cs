@@ -29,13 +29,16 @@ namespace ClientApplication
         private ArrayList waterArr;
         private ArrayList coinArr;
         private ArrayList lifepackArr;
+        private Thread thread;
 
         public GUI()
         {
             InitializeComponent();
             txtCmd.Enabled = false;
             btnSend.Enabled = false;
+            btnStop.Enabled = false;
             txtDes.Enabled = false;
+            txtData.Enabled = false;
 
             position = new int[] { 0, 0 }; //Track the player coordinates
 
@@ -69,20 +72,18 @@ namespace ClientApplication
 
         }
 
-
         /**
         * This method will update the position of the player
         * according to commands given in the text box
         * */
-
         private void btnJoin_Click(object sender, EventArgs e)
         {
             SendCmd("127.0.0.1", 6000, "JOIN#"); //player connect with server
             btnJoin.Enabled = false;
             txtCmd.Enabled = true;
             btnSend.Enabled = true;
-            txtDes.Enabled = true;
-            Thread thread = new Thread(() => StartListening("127.0.0.1", 7000)); //listeneing thread
+            btnStop.Enabled = true;
+            thread = new Thread(() => StartListening("127.0.0.1", 7000)); //listeneing thread
             thread.Start();
         }
 
@@ -93,12 +94,20 @@ namespace ClientApplication
             SendCmd("127.0.0.1", 6000, command);
         }
 
+        /**
+        * This method will call the method UpdateGui() for update the position of the player
+        * of client GUI according to commands given in the text box
+        * */
         private void ArrowKeysPressed(String command)
         {
             UpdateGui(command);
             SendCmd("127.0.0.1", 6000, command);
         }
 
+        /**
+        * This method will update the position of the player
+        * of client GUI according to commands given in the text box
+        * */
         private void UpdateGui(String command)
         {
             int orientation = tankOrientation[myTank];
@@ -224,20 +233,23 @@ namespace ClientApplication
                                 positionLabel.BackColor = System.Drawing.Color.White;
                                 positionLabel.Image = null;
                                 cellList[position[0]][position[1] - 1].Image = new Bitmap("tank.jpg");
-                                cellList[position[0]][position[1] - 1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                                cellList[position[0]][position[1] - 1].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                                 position[1] = position[1] - 1;
                             }
                         }
                         break;
                 }
             }
-            else if (command.Equals("SHOOT"))
+            else if (command.Equals("SHOOT#"))
             {
 
             }
-            positionLabel.Refresh();
+            positionLabel.Refresh();    //refresh the label in order to change to new layout
         }
 
+        /**
+        * This method will send commands to the server
+        * */
         public void SendCmd(String ip, int port, String data)
         {
             try
@@ -266,6 +278,9 @@ namespace ClientApplication
             }
         }
 
+        /**
+        * This method will listen all the messages sent by the server and print them in textboxes
+        * */
         public void StartListening(String ip, int port)
         {
             //The socket that is listened to 
@@ -311,7 +326,7 @@ namespace ClientApplication
             }
             catch (Exception e)
             {
-                MessageBox.Show("\nError at myPro:StartListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("\nError at myPro:StartListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -390,9 +405,9 @@ namespace ClientApplication
                     waterArr.Add(waterOb);
                 }
 
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Game Initiating : \n");
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Player Name : " + details[1] + "\n");
                 txtData.AppendText("Brick Co-ordinates : " + details[2] + "\n");
                 txtData.AppendText("Stone Co-ordinates : " + details[3] + "\n");
@@ -429,17 +444,17 @@ namespace ClientApplication
                 Player playerOb = new Player(myTank,"127.0.0.1",6000,int.Parse(locationDetails[0]),int.Parse(locationDetails[1]),100);
                 playerArr.Add(playerOb);
 
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Game Starting : \n");
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Player 1 Details : " + details[1] + "\n");
                 txtData.AppendText("Player 2 Details : " + details[2].Split('#')[0] + "\n \n");
             }
             else if (details[0].Equals("G"))
             {
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Global Updates : \n");
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Player 1 Location + Direction : " + details[1].Split(';')[1] + "\n");
                 txtData.AppendText("Player 1 Whether Shot : " + details[1].Split(';')[2] + "\n");
                 txtData.AppendText("Player 1 Health : " + details[1].Split(';')[3] + "\n");
@@ -454,23 +469,26 @@ namespace ClientApplication
             }
             else if (details[0].Equals("C"))
             {
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Coins : \n");
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Coin Co-ordinates : " + details[1] + "\n");
                 txtData.AppendText("Time of Coins : " + details[2] + "\n");
                 txtData.AppendText("Value of Coins : " + details[3].Split('#')[0] + "\n\n");
             }
             else if (details[0].Equals("L"))
             {
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Life Packs : \n");
-                txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
+                txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Life Pack Co-ordinates : " + details[1] + "\n");
                 txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
             }
         }
 
+        /**
+        * This method will call the KeyPressEvents by arrow keys
+        * */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Left)
@@ -493,7 +511,21 @@ namespace ClientApplication
                 ArrowKeysPressed("DOWN#");
                 return true;
             }
+            else if (keyData == Keys.Space)
+            {
+                ArrowKeysPressed("SHOOT#");
+                return true;
+            }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        /**
+        * This method will stop threads when closing form
+        * */
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            listener.Stop();
+            thread.Abort();
         }
     }
 }
