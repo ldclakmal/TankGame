@@ -27,13 +27,14 @@ namespace Tanks_Client.beans
         private DateTime updatedTime;
         private int index = -1;
 
-        public Player(string cName, string ipAdd, int cPort, int x, int y)
+        public Player(string cName, string ipAdd, int cPort, int x, int y, int health)
         {
             name = cName;
             ip = ipAdd;
             port = cPort;
             startX = x;
             startY = y;
+            this.health = health;
         }
 
         public int Coins

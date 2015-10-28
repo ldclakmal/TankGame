@@ -9,8 +9,8 @@ using System.Net.Sockets;
 using System.Threading;
 using MetroFramework.Controls;
 using System.Drawing;
-using System.Collections.Generic;
 using System.Collections;
+using Tanks_Client.beans;
 
 namespace ClientApplication
 {
@@ -23,6 +23,12 @@ namespace ClientApplication
         private String myTank;
         private int[][] grid;
         private int[] position;
+        private ArrayList playerArr;
+        private ArrayList brickArr;
+        private ArrayList stoneArr;
+        private ArrayList waterArr;
+        private ArrayList coinArr;
+        private ArrayList lifepackArr;
 
         public GUI()
         {
@@ -246,7 +252,7 @@ namespace ClientApplication
             }
             catch (Exception e)
             {
-                MessageBox.Show("\nError at myPro:sendCmd.....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("\nError at myPro:SendCmd.....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -263,6 +269,7 @@ namespace ClientApplication
                     //Starts listening
                     this.listener.Start();
                 }
+
                 //Establish connection upon client request
                 while (true)
                 {
@@ -326,30 +333,53 @@ namespace ClientApplication
 
             if (details[0].Equals("I"))
             {
+                //intiantiate ArrayLists for keep the track of objects
+                playerArr = new ArrayList();
+                brickArr = new ArrayList();
+                stoneArr = new ArrayList();
+                waterArr = new ArrayList();
+                coinArr = new ArrayList();
+                lifepackArr = new ArrayList();
+
                 string[] brickCordicates = details[2].Split(';');
+
                 for (int i = 0; i < brickCordicates.Length; i++)
                 {
                     String[] codinatesForEach = brickCordicates[i].Split(',');
                     Label brick = cellList[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])];
                     brick.Image = new Bitmap("brick.jpg");
                     grid[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])] = 1;
+
+                    Brick brickOb = new Brick(int.Parse(codinatesForEach[0]), int.Parse(codinatesForEach[1]), 100);
+                    brickArr.Add(brickOb);
                 }
+
                 string[] stoneCordicates = details[3].Split(';');
+
                 for (int i = 0; i < brickCordicates.Length; i++)
                 {
                     String[] codinatesForEach = stoneCordicates[i].Split(',');
                     Label stone = cellList[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])];
                     stone.Image = new Bitmap("stone.jpg");
                     grid[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])] = 1;
+
+                    Stone stoneOb = new Stone(int.Parse(codinatesForEach[0]), int.Parse(codinatesForEach[1]));
+                    stoneArr.Add(stoneOb);
                 }
+
                 string[] waterCordicates = details[4].Split(';');
+
                 for (int i = 0; i < waterCordicates.Length; i++)
                 {
                     String[] codinatesForEach = waterCordicates[i].Split(',');
                     Label water = cellList[int.Parse(codinatesForEach[1].Split('#')[0])][int.Parse(codinatesForEach[0])];
                     water.Image = new Bitmap("water.jpg");
                     grid[int.Parse(codinatesForEach[1].Split('#')[0])][int.Parse(codinatesForEach[0])] = 1;
+
+                    Water waterOb = new Water(int.Parse(codinatesForEach[0]), int.Parse(codinatesForEach[1]));
+                    waterArr.Add(waterOb);
                 }
+
                 txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Game Initiating : \n");
                 txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
@@ -385,6 +415,10 @@ namespace ClientApplication
                     tank.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     tankOrientation[myTank] = 3;
                 }
+
+                Player playerOb = new Player(myTank,"127.0.0.1",6000,int.Parse(locationDetails[0]),int.Parse(locationDetails[1]),100);
+                playerArr.Add(playerOb);
+
                 txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Game Starting : \n");
                 txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
@@ -425,8 +459,6 @@ namespace ClientApplication
                 txtData.AppendText("Life Pack Co-ordinates : " + details[1] + "\n");
                 txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
             }
-
         }
-
     }
 }
