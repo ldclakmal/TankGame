@@ -53,6 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="beans\Brick.cs" />
+    <Compile Include="beans\Bullet.cs" />
+    <Compile Include="beans\Coin.cs" />
+    <Compile Include="beans\LifePack.cs" />
+    <Compile Include="beans\Obstacle.cs" />
+    <Compile Include="beans\Player.cs" />
+    <Compile Include="beans\Stone.cs" />
+    <Compile Include="beans\Water.cs" />
     <Compile Include="GUI.cs">
       <SubType>Form</SubType>
     </Compile>
