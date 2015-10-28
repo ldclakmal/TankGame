@@ -20,7 +20,6 @@ namespace ClientApplication
         private TcpListener listener;
         private Label[][] cellList;
         private Dictionary<String, int> tankOrientation;
-        private ArrayList players;
         private String myTank;
         private int[][] grid;
         private int[] position;
@@ -32,14 +31,14 @@ namespace ClientApplication
             btnSend.Enabled = false;
             txtDes.Enabled = false;
 
-            position = new int[] { 0, 0 };
+            position = new int[] { 0, 0 }; //Track the player coordinates
 
-            tankOrientation = new Dictionary<String, int>();
+            tankOrientation = new Dictionary<String, int>(); //orinetations of tanks
 
             grid = new int[10][];
             for (int i = 0; i < 10; i++)
             {
-                grid[i] = new int[10];
+                grid[i] = new int[10]; //position of coins,healthpack,obstacles
             }
 
             cellList = new Label[][]{ new Label[]{ pos1_1, pos1_2, pos1_3,pos1_4,pos1_5,pos1_6,pos1_7,pos1_8,pos1_9,pos1_10 }
@@ -64,14 +63,20 @@ namespace ClientApplication
 
         }
 
+
+        /**
+        * This method will update the position of the player
+        * according to commands given in the text box
+        * */
+
         private void btnJoin_Click(object sender, EventArgs e)
         {
-            sendCmd("127.0.0.1", 6000, "JOIN#");
+            SendCmd("127.0.0.1", 6000, "JOIN#"); //player connect with server
             btnJoin.Enabled = false;
             txtCmd.Enabled = true;
             btnSend.Enabled = true;
             txtDes.Enabled = true;
-            Thread thread = new Thread(() => startListening("127.0.0.1", 7000));
+            Thread thread = new Thread(() => StartListening("127.0.0.1", 7000)); //listeneing thread
             thread.Start();
         }
 
@@ -79,7 +84,8 @@ namespace ClientApplication
         {
             String command = txtCmd.Text.ToString();
             int orientation = tankOrientation[myTank];
-            Label positionLabel = cellList[position[0]][position[1]];
+            Label positionLabel = cellList[position[0]][position[1]]; //current position of the player
+
             if (command.Equals("UP#"))
             {
                 switch (orientation)
@@ -87,10 +93,13 @@ namespace ClientApplication
                     case 0:
                         if (position[0] - 1 >= 0)
                         {
-                            positionLabel.BackColor = System.Drawing.Color.White;
-                            positionLabel.Image = null;
-                            cellList[position[0] - 1][position[1]].Image = new Bitmap("tank.jpg");
-                            position[0] = position[0] - 1;
+                            if (grid[position[0] - 1][position[1]] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0] - 1][position[1]].Image = new Bitmap("tank.jpg");
+                                position[0] = position[0] - 1;
+                            }
                         }
                         break;
                     case 1:
@@ -122,11 +131,14 @@ namespace ClientApplication
                     case 2:
                         if (position[0] + 1 <= 9)
                         {
-                            positionLabel.BackColor = System.Drawing.Color.White;
-                            positionLabel.Image = null;
-                            cellList[position[0] + 1][position[1]].Image = new Bitmap("tank.jpg");
-                            cellList[position[0] + 1][position[1]].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                            position[0] = position[0] + 1;
+                            if (grid[position[0] + 1][position[1]] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0] + 1][position[1]].Image = new Bitmap("tank.jpg");
+                                cellList[position[0] + 1][position[1]].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                                position[0] = position[0] + 1;
+                            }
                         }
                         break;
                     case 3:
@@ -147,11 +159,14 @@ namespace ClientApplication
 
                         if (position[1] + 1 <= 9)
                         {
-                            positionLabel.BackColor = System.Drawing.Color.White;
-                            positionLabel.Image = null;
-                            cellList[position[0]][position[1]+1].Image = new Bitmap("tank.jpg");
-                            cellList[position[0]][position[1]+1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                            position[1] = position[1] + 1;
+                            if (grid[position[0]][position[1] + 1] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0]][position[1] + 1].Image = new Bitmap("tank.jpg");
+                                cellList[position[0]][position[1] + 1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                                position[1] = position[1] + 1;
+                            }
 
                         }
                         break;
@@ -186,12 +201,14 @@ namespace ClientApplication
                     case 3:
                         if (position[1] - 1 >= 0)
                         {
-                            positionLabel.BackColor = System.Drawing.Color.White;
-                            positionLabel.Image = null;
-                            cellList[position[0]][position[1]-1].Image = new Bitmap("tank.jpg");
-                            cellList[position[0]][position[1]-1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                            position[1] = position[1] - 1;
-
+                            if (grid[position[0]][position[1] - 1] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0]][position[1] - 1].Image = new Bitmap("tank.jpg");
+                                cellList[position[0]][position[1] - 1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                                position[1] = position[1] - 1;
+                            }
                         }
                         break;
                 }
@@ -202,10 +219,10 @@ namespace ClientApplication
             }
             positionLabel.Refresh();
             String cmd = txtCmd.Text;
-            sendCmd("127.0.0.1", 6000, cmd);
+            SendCmd("127.0.0.1", 6000, cmd);
         }
 
-        public void sendCmd(String ip, int port, String data)
+        public void SendCmd(String ip, int port, String data)
         {
             try
             {
@@ -233,7 +250,7 @@ namespace ClientApplication
             }
         }
 
-        public void startListening(String ip, int port)
+        public void StartListening(String ip, int port)
         {
             //The socket that is listened to 
             Socket connection = null;
@@ -271,15 +288,19 @@ namespace ClientApplication
                         serverStream.Close();
                         string serverIp = s.Substring(0, s.IndexOf(":"));
                         AppendTextBox(serverIp + "$" + reply);
+                        CreateObstacles(reply);
                     }
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("\nError at myPro:startListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("\nError at myPro:StartListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /**
+         * This method append string phrase sent by the server to TextArea
+         * */
         public void AppendTextBox(string msg)
         {
             if (InvokeRequired)
@@ -288,7 +309,20 @@ namespace ClientApplication
                 return;
             }
             txtDes.AppendText("\nServer IP " + msg.Split('$')[0] + " : " + msg.Split('$')[1] + "\n");
-            string[] details = msg.Split('$')[1].Split(':');
+        }
+
+
+        /**
+        * This method update obstacle in grid according to messages sent by server
+        * */
+        public void CreateObstacles(string msg)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<string>(CreateObstacles), new object[] { msg });
+                return;
+            }
+            string[] details = msg.Split(':');
 
             if (details[0].Equals("I"))
             {
@@ -298,6 +332,7 @@ namespace ClientApplication
                     String[] codinatesForEach = brickCordicates[i].Split(',');
                     Label brick = cellList[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])];
                     brick.Image = new Bitmap("brick.jpg");
+                    grid[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])] = 1;
                 }
                 string[] stoneCordicates = details[3].Split(';');
                 for (int i = 0; i < brickCordicates.Length; i++)
@@ -305,6 +340,7 @@ namespace ClientApplication
                     String[] codinatesForEach = stoneCordicates[i].Split(',');
                     Label stone = cellList[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])];
                     stone.Image = new Bitmap("stone.jpg");
+                    grid[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])] = 1;
                 }
                 string[] waterCordicates = details[4].Split(';');
                 for (int i = 0; i < waterCordicates.Length; i++)
@@ -312,6 +348,7 @@ namespace ClientApplication
                     String[] codinatesForEach = waterCordicates[i].Split(',');
                     Label water = cellList[int.Parse(codinatesForEach[1].Split('#')[0])][int.Parse(codinatesForEach[0])];
                     water.Image = new Bitmap("water.jpg");
+                    grid[int.Parse(codinatesForEach[1].Split('#')[0])][int.Parse(codinatesForEach[0])] = 1;
                 }
                 txtData.AppendText("---------------------------------------------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Game Initiating : \n");
@@ -388,6 +425,7 @@ namespace ClientApplication
                 txtData.AppendText("Life Pack Co-ordinates : " + details[1] + "\n");
                 txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
             }
+
         }
 
     }
