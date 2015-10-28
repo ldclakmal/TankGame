@@ -1305,6 +1305,7 @@
             this.Controls.Add(this.pos1_2);
             this.Controls.Add(this.pos1_1);
             this.Controls.Add(this.txtDes);
+            this.KeyPreview = true;
             this.Name = "GUI";
             this.Text = "Tank Game";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;

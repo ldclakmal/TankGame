@@ -89,6 +89,18 @@ namespace ClientApplication
         private void btnSend_Click(object sender, EventArgs e)
         {
             String command = txtCmd.Text.ToString();
+            UpdateGui(command);
+            SendCmd("127.0.0.1", 6000, command);
+        }
+
+        private void ArrowKeysPressed(String command)
+        {
+            UpdateGui(command);
+            SendCmd("127.0.0.1", 6000, command);
+        }
+
+        private void UpdateGui(String command)
+        {
             int orientation = tankOrientation[myTank];
             Label positionLabel = cellList[position[0]][position[1]]; //current position of the player
 
@@ -224,8 +236,6 @@ namespace ClientApplication
 
             }
             positionLabel.Refresh();
-            String cmd = txtCmd.Text;
-            SendCmd("127.0.0.1", 6000, cmd);
         }
 
         public void SendCmd(String ip, int port, String data)
@@ -341,11 +351,11 @@ namespace ClientApplication
                 coinArr = new ArrayList();
                 lifepackArr = new ArrayList();
 
-                string[] brickCordicates = details[2].Split(';');
+                string[] brickCordinates = details[2].Split(';');
 
-                for (int i = 0; i < brickCordicates.Length; i++)
+                for (int i = 0; i < brickCordinates.Length; i++)
                 {
-                    String[] codinatesForEach = brickCordicates[i].Split(',');
+                    String[] codinatesForEach = brickCordinates[i].Split(',');
                     Label brick = cellList[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])];
                     brick.Image = new Bitmap("brick.jpg");
                     grid[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])] = 1;
@@ -354,11 +364,11 @@ namespace ClientApplication
                     brickArr.Add(brickOb);
                 }
 
-                string[] stoneCordicates = details[3].Split(';');
+                string[] stoneCordinates = details[3].Split(';');
 
-                for (int i = 0; i < brickCordicates.Length; i++)
+                for (int i = 0; i < stoneCordinates.Length; i++)
                 {
-                    String[] codinatesForEach = stoneCordicates[i].Split(',');
+                    String[] codinatesForEach = stoneCordinates[i].Split(',');
                     Label stone = cellList[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])];
                     stone.Image = new Bitmap("stone.jpg");
                     grid[int.Parse(codinatesForEach[1])][int.Parse(codinatesForEach[0])] = 1;
@@ -367,16 +377,16 @@ namespace ClientApplication
                     stoneArr.Add(stoneOb);
                 }
 
-                string[] waterCordicates = details[4].Split(';');
+                string[] waterCordinates = details[4].Split(';');
 
-                for (int i = 0; i < waterCordicates.Length; i++)
+                for (int i = 0; i < waterCordinates.Length; i++)
                 {
-                    String[] codinatesForEach = waterCordicates[i].Split(',');
+                    String[] codinatesForEach = waterCordinates[i].Split(',');
                     Label water = cellList[int.Parse(codinatesForEach[1].Split('#')[0])][int.Parse(codinatesForEach[0])];
                     water.Image = new Bitmap("water.jpg");
                     grid[int.Parse(codinatesForEach[1].Split('#')[0])][int.Parse(codinatesForEach[0])] = 1;
 
-                    Water waterOb = new Water(int.Parse(codinatesForEach[0]), int.Parse(codinatesForEach[1]));
+                    Water waterOb = new Water(int.Parse(codinatesForEach[0]), int.Parse(codinatesForEach[1].Split('#')[0]));
                     waterArr.Add(waterOb);
                 }
 
@@ -459,6 +469,31 @@ namespace ClientApplication
                 txtData.AppendText("Life Pack Co-ordinates : " + details[1] + "\n");
                 txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Left)
+            {
+                ArrowKeysPressed("LEFT#");
+                return true;
+            }
+            else if (keyData == Keys.Right)
+            {
+                ArrowKeysPressed("RIGHT#");
+                return true;
+            }
+            else if (keyData == Keys.Up)
+            {
+                ArrowKeysPressed("UP#");
+                return true;
+            }
+            else if (keyData == Keys.Down)
+            {
+                ArrowKeysPressed("DOWN#");
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
