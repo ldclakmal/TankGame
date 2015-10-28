@@ -149,8 +149,8 @@ namespace ClientApplication
                         {
                             positionLabel.BackColor = System.Drawing.Color.White;
                             positionLabel.Image = null;
-                            cellList[position[0] + 1][position[1]].Image = new Bitmap("tank.jpg");
-                            cellList[position[0] + 1][position[1]].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            cellList[position[0]][position[1]+1].Image = new Bitmap("tank.jpg");
+                            cellList[position[0]][position[1]+1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                             position[1] = position[1] + 1;
 
                         }
@@ -188,8 +188,8 @@ namespace ClientApplication
                         {
                             positionLabel.BackColor = System.Drawing.Color.White;
                             positionLabel.Image = null;
-                            cellList[position[0] + 1][position[1]].Image = new Bitmap("tank.jpg");
-                            cellList[position[0] + 1][position[1]].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            cellList[position[0]][position[1]-1].Image = new Bitmap("tank.jpg");
+                            cellList[position[0]][position[1]-1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
                             position[1] = position[1] - 1;
 
                         }
@@ -200,7 +200,7 @@ namespace ClientApplication
             {
 
             }
-
+            positionLabel.Refresh();
             String cmd = txtCmd.Text;
             sendCmd("127.0.0.1", 6000, cmd);
         }
