@@ -367,7 +367,7 @@ namespace ClientApplication
                 isTooQuick = false;
             }
         }
-
+        
 
         /**
         * This method update obstacle in grid according to messages sent by server
