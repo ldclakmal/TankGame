@@ -18,6 +18,7 @@ namespace ClientApplication
     {
         private TcpClient client;
         private TcpListener listener;
+        private Socket connection;
         private Label[][] cellList;
         private Dictionary<String, int> tankOrientation;
         private String myTank;
@@ -30,6 +31,8 @@ namespace ClientApplication
         private ArrayList coinArr;
         private ArrayList lifepackArr;
         private Thread thread;
+        private Boolean isStop;
+        private Boolean isTooQuick;
 
         public GUI()
         {
@@ -39,6 +42,8 @@ namespace ClientApplication
             btnStop.Enabled = false;
             txtDes.Enabled = false;
             txtData.Enabled = false;
+            isStop = false;
+            isTooQuick = false;
 
             position = new int[] { 0, 0 }; //Track the player coordinates
 
@@ -90,7 +95,10 @@ namespace ClientApplication
         private void btnSend_Click(object sender, EventArgs e)
         {
             String command = txtCmd.Text.ToString();
-            UpdateGui(command);
+            if (!isTooQuick)
+            {
+                UpdateGui(command);
+            }
             SendCmd("127.0.0.1", 6000, command);
         }
 
@@ -100,7 +108,10 @@ namespace ClientApplication
         * */
         private void ArrowKeysPressed(String command)
         {
-            UpdateGui(command);
+            if (!isTooQuick)
+            {
+                UpdateGui(command);
+            }
             SendCmd("127.0.0.1", 6000, command);
         }
 
@@ -284,7 +295,7 @@ namespace ClientApplication
         public void StartListening(String ip, int port)
         {
             //The socket that is listened to 
-            Socket connection = null;
+            connection = null;
             try
             {
                 if (listener == null)
@@ -322,11 +333,16 @@ namespace ClientApplication
                         AppendTextBox(serverIp + "$" + reply);
                         CreateObstacles(reply);
                     }
+                    if (isStop)
+                    {
+                        listener.Stop();
+                        break;
+                    }
                 }
             }
             catch (Exception e)
             {
-                //MessageBox.Show("\nError at myPro:StartListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("\nError at myPro:StartListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -341,6 +357,15 @@ namespace ClientApplication
                 return;
             }
             txtDes.AppendText("\nServer IP " + msg.Split('$')[0] + " : " + msg.Split('$')[1] + "\n");
+            if (msg.Contains("TOO_QUICK#"))
+            {
+                isTooQuick = true;
+                MessageBox.Show("Too Quick Commands...");
+            }
+            else
+            {
+                isTooQuick = false;
+            }
         }
 
 
@@ -441,7 +466,7 @@ namespace ClientApplication
                     tankOrientation[myTank] = 3;
                 }
 
-                Player playerOb = new Player(myTank,"127.0.0.1",6000,int.Parse(locationDetails[0]),int.Parse(locationDetails[1]),100);
+                Player playerOb = new Player(myTank, "127.0.0.1", 6000, int.Parse(locationDetails[0]), int.Parse(locationDetails[1]), 100);
                 playerArr.Add(playerOb);
 
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
@@ -524,8 +549,27 @@ namespace ClientApplication
         * */
         private void btnStop_Click(object sender, EventArgs e)
         {
-            listener.Stop();
-            thread.Abort();
+            if (connection != null)
+                if (connection.Connected)
+                {
+                    isStop = true;
+                    btnStop.Enabled = false;
+                }
+        }
+
+        private void GUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Do you want to exit?", "Closing Tank Game", MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
+            {
+                isStop = true;
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

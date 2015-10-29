@@ -133,8 +133,8 @@
             this.pos10_1 = new System.Windows.Forms.Label();
             this.pos1_1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtData = new System.Windows.Forms.TextBox();
             this.btnStop = new MetroFramework.Controls.MetroButton();
+            this.txtData = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1191,17 +1191,6 @@
             this.panel1.Size = new System.Drawing.Size(1037, 35);
             this.panel1.TabIndex = 109;
             // 
-            // txtData
-            // 
-            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtData.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txtData.Location = new System.Drawing.Point(41, 282);
-            this.txtData.Multiline = true;
-            this.txtData.Name = "txtData";
-            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtData.Size = new System.Drawing.Size(433, 405);
-            this.txtData.TabIndex = 110;
-            // 
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.Red;
@@ -1213,6 +1202,18 @@
             this.btnStop.Text = "STOP";
             this.btnStop.UseSelectable = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // txtData
+            // 
+            this.txtData.BackColor = System.Drawing.SystemColors.Window;
+            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txtData.Location = new System.Drawing.Point(41, 282);
+            this.txtData.Multiline = true;
+            this.txtData.Name = "txtData";
+            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtData.Size = new System.Drawing.Size(433, 405);
+            this.txtData.TabIndex = 110;
             // 
             // GUI
             // 
@@ -1326,6 +1327,7 @@
             this.Name = "GUI";
             this.Text = "Tank Game";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GUI_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
