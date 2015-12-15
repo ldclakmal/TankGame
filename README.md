@@ -6,7 +6,7 @@ Learning outcomes of this module:
 * apply best coding practices
 * contribute effectively for a group oriented task
 
-Credits : 1.0
-Pre-requisites : CS2062 | CS2022
-GPA/NGPA : NGPA
-Subject Coordinator : Dr. Surangika Ranathunga | Mr. Sandamal Weerasinghe
+- Credits : 1.0
+- Pre-requisites : CS2062 | CS2022
+- GPA/NGPA : NGPA
+- Subject Coordinator : Dr. Surangika Ranathunga | Mr. Sandamal Weerasinghe
