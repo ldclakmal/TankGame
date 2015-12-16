@@ -18,7 +18,6 @@ F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tank
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.Design.dll
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.dll
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.Fonts.dll
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csprojResolveAssemblyReference.cache
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\ClientApplication.GUI.resources
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.Properties.Resources.resources
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csproj.GenerateResource.Cache
