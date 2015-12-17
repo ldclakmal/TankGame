@@ -36,9 +36,9 @@ namespace ClientApplication
         private ArrayList coinArr;
         private ArrayList lifepackArr;
         private Thread thread;
-        private Thread coinThread;
         private Boolean isStop;
         private Boolean isTooQuick;
+        private String reply;
 
         public GUI()
         {
@@ -121,152 +121,6 @@ namespace ClientApplication
         }
 
         /**
-        * This method will update the position of the player
-        * of client GUI according to commands given in the text box
-        * */
-
-        /**
-        private void UpdateGui(String command)
-        {
-            int orientation = tankOrientation[myTank];
-            Label positionLabel = cellList[position[0]][position[1]]; //current position of the player
-
-            if (command.Equals("UP#"))
-            {
-                switch (orientation)
-                {
-                    case 0:
-                        if (position[0] - 1 >= 0)
-                        {
-                            if (grid[position[0] - 1][position[1]] != 1)
-                            {
-                                positionLabel.BackColor = System.Drawing.Color.White;
-                                positionLabel.Image = null;
-                                cellList[position[0] - 1][position[1]].Image = new Bitmap("tank1.jpg");
-                                position[0] = position[0] - 1;
-                            }
-                        }
-                        break;
-                    case 1:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                        tankOrientation[myTank] = 0;
-                        break;
-                    case 2:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        tankOrientation[myTank] = 0;
-                        break;
-                    case 3:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                        tankOrientation[myTank] = 0;
-                        break;
-                }
-            }
-            else if (command.Equals("DOWN#"))
-            {
-                switch (orientation)
-                {
-                    case 0:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        tankOrientation[myTank] = 2;
-                        break;
-                    case 1:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                        tankOrientation[myTank] = 2;
-                        break;
-                    case 2:
-                        if (position[0] + 1 <= 9)
-                        {
-                            if (grid[position[0] + 1][position[1]] != 1)
-                            {
-                                positionLabel.BackColor = System.Drawing.Color.White;
-                                positionLabel.Image = null;
-                                cellList[position[0] + 1][position[1]].Image = new Bitmap("tank1.jpg");
-                                cellList[position[0] + 1][position[1]].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                                position[0] = position[0] + 1;
-                            }
-                        }
-                        break;
-                    case 3:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                        tankOrientation[myTank] = 2;
-                        break;
-                }
-            }
-            else if (command.Equals("RIGHT#"))
-            {
-                switch (orientation)
-                {
-                    case 0:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                        tankOrientation[myTank] = 1;
-                        break;
-                    case 1:
-
-                        if (position[1] + 1 <= 9)
-                        {
-                            if (grid[position[0]][position[1] + 1] != 1)
-                            {
-                                positionLabel.BackColor = System.Drawing.Color.White;
-                                positionLabel.Image = null;
-                                cellList[position[0]][position[1] + 1].Image = new Bitmap("tank1.jpg");
-                                cellList[position[0]][position[1] + 1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                                position[1] = position[1] + 1;
-                            }
-
-                        }
-                        break;
-
-                    case 2:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                        tankOrientation[myTank] = 1;
-                        break;
-                    case 3:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        tankOrientation[myTank] = 1;
-                        break;
-                }
-            }
-            else if (command.Equals("LEFT#"))
-            {
-                switch (orientation)
-                {
-                    case 0:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                        tankOrientation[myTank] = 3;
-                        break;
-                    case 1:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                        tankOrientation[myTank] = 3;
-                        break;
-
-                    case 2:
-                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                        tankOrientation[myTank] = 3;
-                        break;
-                    case 3:
-                        if (position[1] - 1 >= 0)
-                        {
-                            if (grid[position[0]][position[1] - 1] != 1)
-                            {
-                                positionLabel.BackColor = System.Drawing.Color.White;
-                                positionLabel.Image = null;
-                                cellList[position[0]][position[1] - 1].Image = new Bitmap("tank1.jpg");
-                                cellList[position[0]][position[1] - 1].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                                position[1] = position[1] - 1;
-                            }
-                        }
-                        break;
-                }
-            }
-            else if (command.Equals("SHOOT#"))
-            {
-
-            }
-            positionLabel.Refresh();    //refresh the label in order to change to new layout
-        }
-        **/
-
-        /**
         * This method will send commands to the server
         * */
         public void SendCmd(String ip, int port, String data)
@@ -315,7 +169,7 @@ namespace ClientApplication
                 }
 
                 //Establish connection upon client request
-                while (!isStop)
+                while (true)
                 {
                     //connection is connected socket
                     connection = listener.AcceptSocket();
@@ -335,7 +189,7 @@ namespace ClientApplication
                             inputStr.Add((Byte)asw);
                         }
 
-                        String reply = Encoding.UTF8.GetString(inputStr.ToArray());
+                        reply = Encoding.UTF8.GetString(inputStr.ToArray());
                         serverStream.Close();
                         string serverIp = s.Substring(0, s.IndexOf(":"));
                         AppendTextBox(serverIp + "$" + reply);
@@ -450,6 +304,9 @@ namespace ClientApplication
             {
                 InitiateTankLocation(details);
 
+                thread = new Thread(() => StartAI("127.0.0.1", 7000)); //AI thread
+                thread.Start();
+
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Game Starting : \n");
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
@@ -527,11 +384,7 @@ namespace ClientApplication
             }
             else if (details[0].Equals("C"))
             {
-                String[] locationDetails = details[1].Split(',');
-                Label coin = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
-                coin.Image = new Bitmap("coin.jpg");
-                Coin coinOb = new Coin(int.Parse(locationDetails[1]), int.Parse(locationDetails[0]), int.Parse(details[2]), int.Parse(details[3].Split('#')[0]));
-                coinArr.Add(coinOb);
+                ShowCoinLocation(details);
 
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Coins : \n");
@@ -542,11 +395,7 @@ namespace ClientApplication
             }
             else if (details[0].Equals("L"))
             {
-                String[] locationDetails = details[1].Split(',');
-                Label coin = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
-                coin.Image = new Bitmap("health.jpg");
-                LifePack lifePackOb = new LifePack(int.Parse(locationDetails[1]), int.Parse(locationDetails[0]), int.Parse(details[2].Split('#')[0]));
-                lifepackArr.Add(lifePackOb);
+                ShowLifePackLocation(details);
 
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Life Packs : \n");
@@ -554,6 +403,72 @@ namespace ClientApplication
                 txtData.AppendText("Life Pack Co-ordinates : " + details[1] + "\n");
                 txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
             }
+        }
+
+        public void StartAI(String ip, int port)
+        {
+            while (true)
+            {
+                string[] details = reply.Split(':');
+                if (details[0].Equals("C"))
+                {
+                    String[] coinCoordinates = details[1].Split(',');
+                    int x = int.Parse(coinCoordinates[0]);
+                    int y = int.Parse(coinCoordinates[1]);
+                    //algorithm....
+                    Console.WriteLine("X : " + x + " " + " Y : " + y);
+                }
+            }
+        }
+
+        /**
+        * This method shows lifepacks in grid according to messages sent by server and consider the lifetime
+        * */
+        public void ShowLifePackLocation(string[] details)
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+
+                String[] locationDetails = details[1].Split(',');
+                Label coin = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
+                coin.Image = new Bitmap("health.jpg");
+                LifePack lifePackOb = new LifePack(int.Parse(locationDetails[1]), int.Parse(locationDetails[0]), int.Parse(details[2].Split('#')[0]));
+                lifepackArr.Add(lifePackOb);
+
+                Thread.Sleep(int.Parse(details[2].Split('#')[0]));
+
+                Label currentPositionLabel = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
+                currentPositionLabel.BackColor = System.Drawing.Color.White;
+                currentPositionLabel.Image = null;
+                //currentPositionLabel.Refresh();
+
+            }).Start();
+        }
+
+        /**
+        * This method shows coins in grid according to messages sent by server and consider the lifetime
+        * */
+        public void ShowCoinLocation(string[] details)
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+
+                String[] locationDetails = details[1].Split(',');
+                Label coin = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
+                coin.Image = new Bitmap("coin.jpg");
+                Coin coinOb = new Coin(int.Parse(locationDetails[1]), int.Parse(locationDetails[0]), int.Parse(details[2]), int.Parse(details[3].Split('#')[0]));
+                coinArr.Add(coinOb);
+
+                Thread.Sleep(int.Parse(details[2]));
+
+                Label currentPositionLabel = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
+                currentPositionLabel.BackColor = System.Drawing.Color.White;
+                currentPositionLabel.Image = null;
+                //currentPositionLabel.Refresh();
+
+            }).Start();
         }
 
         /**
@@ -1438,5 +1353,152 @@ namespace ClientApplication
                 e.Cancel = true;
             }
         }
+
+        /**
+       * This method will update the position of the player
+       * of client GUI according to commands given in the text box
+       * */
+
+        /**
+        private void UpdateGui(String command)
+        {
+            int orientation = tankOrientation[myTank];
+            Label positionLabel = cellList[position[0]][position[1]]; //current position of the player
+
+            if (command.Equals("UP#"))
+            {
+                switch (orientation)
+                {
+                    case 0:
+                        if (position[0] - 1 >= 0)
+                        {
+                            if (grid[position[0] - 1][position[1]] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0] - 1][position[1]].Image = new Bitmap("tank1.jpg");
+                                position[0] = position[0] - 1;
+                            }
+                        }
+                        break;
+                    case 1:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        tankOrientation[myTank] = 0;
+                        break;
+                    case 2:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        tankOrientation[myTank] = 0;
+                        break;
+                    case 3:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        tankOrientation[myTank] = 0;
+                        break;
+                }
+            }
+            else if (command.Equals("DOWN#"))
+            {
+                switch (orientation)
+                {
+                    case 0:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        tankOrientation[myTank] = 2;
+                        break;
+                    case 1:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        tankOrientation[myTank] = 2;
+                        break;
+                    case 2:
+                        if (position[0] + 1 <= 9)
+                        {
+                            if (grid[position[0] + 1][position[1]] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0] + 1][position[1]].Image = new Bitmap("tank1.jpg");
+                                cellList[position[0] + 1][position[1]].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                                position[0] = position[0] + 1;
+                            }
+                        }
+                        break;
+                    case 3:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        tankOrientation[myTank] = 2;
+                        break;
+                }
+            }
+            else if (command.Equals("RIGHT#"))
+            {
+                switch (orientation)
+                {
+                    case 0:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        tankOrientation[myTank] = 1;
+                        break;
+                    case 1:
+
+                        if (position[1] + 1 <= 9)
+                        {
+                            if (grid[position[0]][position[1] + 1] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0]][position[1] + 1].Image = new Bitmap("tank1.jpg");
+                                cellList[position[0]][position[1] + 1].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                                position[1] = position[1] + 1;
+                            }
+
+                        }
+                        break;
+
+                    case 2:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        tankOrientation[myTank] = 1;
+                        break;
+                    case 3:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        tankOrientation[myTank] = 1;
+                        break;
+                }
+            }
+            else if (command.Equals("LEFT#"))
+            {
+                switch (orientation)
+                {
+                    case 0:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                        tankOrientation[myTank] = 3;
+                        break;
+                    case 1:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                        tankOrientation[myTank] = 3;
+                        break;
+
+                    case 2:
+                        positionLabel.Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                        tankOrientation[myTank] = 3;
+                        break;
+                    case 3:
+                        if (position[1] - 1 >= 0)
+                        {
+                            if (grid[position[0]][position[1] - 1] != 1)
+                            {
+                                positionLabel.BackColor = System.Drawing.Color.White;
+                                positionLabel.Image = null;
+                                cellList[position[0]][position[1] - 1].Image = new Bitmap("tank1.jpg");
+                                cellList[position[0]][position[1] - 1].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                                position[1] = position[1] - 1;
+                            }
+                        }
+                        break;
+                }
+            }
+            else if (command.Equals("SHOOT#"))
+            {
+
+            }
+            positionLabel.Refresh();    //refresh the label in order to change to new layout
+        }
+        **/
+
     }
 }
