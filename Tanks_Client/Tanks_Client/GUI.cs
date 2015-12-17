@@ -29,6 +29,7 @@ namespace ClientApplication
         private int[][] grid;
         private int[] position;
         private ArrayList playerArr;
+        private ArrayList enemyArr;
         private ArrayList brickArr;
         private ArrayList stoneArr;
         private ArrayList waterArr;
@@ -372,7 +373,6 @@ namespace ClientApplication
             }
         }
 
-
         /**
         * This method update obstacle in grid according to messages sent by server
         * */
@@ -389,6 +389,7 @@ namespace ClientApplication
             {
                 //intiantiate ArrayLists for keep the track of objects
                 playerArr = new ArrayList();
+                enemyArr = new ArrayList();
                 brickArr = new ArrayList();
                 stoneArr = new ArrayList();
                 waterArr = new ArrayList();
@@ -503,8 +504,11 @@ namespace ClientApplication
                         tankOrientation[enemyTank1] = 3;
                     }
 
-                    playerOb = new Player(enemyTank1, "127.0.0.1", 6000, int.Parse(locationDetails[0]), int.Parse(locationDetails[1]), 100);
-                    playerArr.Add(playerOb);
+                    Enemy enemy = new Enemy();
+                    enemy.Id = 1;
+                    enemy.CurrentPositionX = int.Parse(locationDetails[0]);
+                    enemy.CurrentPositionY = int.Parse(locationDetails[1]);
+                    enemyArr.Add(enemy);
                 }
 
                 //--------------- enemyTank2 ---------------------------------------------------------
@@ -536,8 +540,11 @@ namespace ClientApplication
                         tankOrientation[enemyTank2] = 3;
                     }
 
-                    playerOb = new Player(enemyTank2, "127.0.0.1", 6000, int.Parse(locationDetails[0]), int.Parse(locationDetails[1]), 100);
-                    playerArr.Add(playerOb);
+                    Enemy enemy = new Enemy();
+                    enemy.Id = 2;
+                    enemy.CurrentPositionX = int.Parse(locationDetails[0]);
+                    enemy.CurrentPositionY = int.Parse(locationDetails[1]);
+                    enemyArr.Add(enemy);
                 }
 
                 //--------------- enemyTank3 ---------------------------------------------------------
@@ -569,8 +576,11 @@ namespace ClientApplication
                         tankOrientation[enemyTank3] = 3;
                     }
 
-                    playerOb = new Player(enemyTank3, "127.0.0.1", 6000, int.Parse(locationDetails[0]), int.Parse(locationDetails[1]), 100);
-                    playerArr.Add(playerOb);
+                    Enemy enemy = new Enemy();
+                    enemy.Id = 3;
+                    enemy.CurrentPositionX = int.Parse(locationDetails[0]);
+                    enemy.CurrentPositionY = int.Parse(locationDetails[1]);
+                    enemyArr.Add(enemy);
                 }
 
                 //--------------- enemyTank4 ---------------------------------------------------------
@@ -602,31 +612,52 @@ namespace ClientApplication
                         tankOrientation[enemyTank4] = 3;
                     }
 
-                    playerOb = new Player(enemyTank4, "127.0.0.1", 6000, int.Parse(locationDetails[0]), int.Parse(locationDetails[1]), 100);
-                    playerArr.Add(playerOb);
+                    Enemy enemy = new Enemy();
+                    enemy.Id = 4;
+                    enemy.CurrentPositionX = int.Parse(locationDetails[0]);
+                    enemy.CurrentPositionY = int.Parse(locationDetails[1]);
+                    enemyArr.Add(enemy);
                 }
 
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Game Starting : \n");
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
-                txtData.AppendText("Player 1 Details : " + details[1] + "\n");
-                txtData.AppendText("Player 2 Details : " + details[2].Split('#')[0] + "\n \n");
+                txtData.AppendText("MyTank Details : " + details[1] + "\n");
+                if (details.Length >= 3)
+                {
+                    txtData.AppendText("Enemy 1 Details : " + details[2].Split('#')[0] + "\n \n");
+                }
+                if (details.Length >= 4)
+                {
+                    txtData.AppendText("Enemy 2 Details : " + details[3].Split('#')[0] + "\n \n");
+                }
+                if (details.Length >= 5)
+                {
+                    txtData.AppendText("Enemy 3 Details : " + details[4].Split('#')[0] + "\n \n");
+                }
+                if (details.Length >= 6)
+                {
+                    txtData.AppendText("Enemy 4 Details : " + details[5].Split('#')[0] + "\n \n");
+                }
             }
             else if (details[0].Equals("G"))
             {
+                UpdateTankLocation(details);
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Global Updates : \n");
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
-                txtData.AppendText("Player 1 Location + Direction : " + details[1].Split(';')[1] + "\n");
-                txtData.AppendText("Player 1 Whether Shot : " + details[1].Split(';')[2] + "\n");
-                txtData.AppendText("Player 1 Health : " + details[1].Split(';')[3] + "\n");
-                txtData.AppendText("Player 1 Coins : " + details[1].Split(';')[4] + "\n");
-                txtData.AppendText("Player 1 Points : " + details[1].Split(';')[5] + "\n \n");
-                txtData.AppendText("Player 2 Location + Direction : " + details[2].Split(';')[1] + "\n");
-                txtData.AppendText("Player 2 Whether Shot : " + details[2].Split(';')[2] + "\n");
-                txtData.AppendText("Player 2 Health : " + details[2].Split(';')[3] + "\n");
-                txtData.AppendText("Player 2 Coins : " + details[2].Split(';')[4] + "\n");
-                txtData.AppendText("Player 2 Points : " + details[2].Split(';')[5] + "\n \n");
+                txtData.AppendText("Player 1 Location : " + details[1].Split(';')[1] + "\n");
+                txtData.AppendText("Player 1 Direction : " + details[1].Split(';')[2] + "\n");
+                txtData.AppendText("Player 1 Whether Shot : " + details[1].Split(';')[3] + "\n");
+                txtData.AppendText("Player 1 Health : " + details[1].Split(';')[4] + "\n");
+                txtData.AppendText("Player 1 Coins : " + details[1].Split(';')[5] + "\n");
+                txtData.AppendText("Player 1 Points : " + details[1].Split(';')[6] + "\n \n");
+                txtData.AppendText("Player 2 Location : " + details[2].Split(';')[1] + "\n");
+                txtData.AppendText("Player 2 Direction : " + details[2].Split(';')[2] + "\n");
+                txtData.AppendText("Player 2 Whether Shot : " + details[2].Split(';')[3] + "\n");
+                txtData.AppendText("Player 2 Health : " + details[2].Split(';')[4] + "\n");
+                txtData.AppendText("Player 2 Coins : " + details[2].Split(';')[5] + "\n");
+                txtData.AppendText("Player 2 Points : " + details[2].Split(';')[6] + "\n \n");
                 txtData.AppendText("X,Y Damage Levels : " + details[3].Split('#')[0] + "\n \n");
             }
             else if (details[0].Equals("C"))
@@ -647,6 +678,135 @@ namespace ClientApplication
                 txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
             }
         }
+
+
+        public void UpdateTankLocation(string[] details)
+        {
+            if (details.Length >= 3)
+            {
+                Enemy enemy = (Enemy)enemyArr[1];
+                String coordinates = details[2].Split(';')[1];
+                String _direction = details[2].Split(';')[2];
+                String x = coordinates.Split(',')[0];
+                String y = coordinates.Split(',')[1];
+
+                Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
+                currentPositionLabel.BackColor = System.Drawing.Color.White;
+                currentPositionLabel.Image = null;
+                cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank2.jpg");
+                enemy.CurrentPositionX = int.Parse(y);
+                enemy.CurrentPositionY = int.Parse(x);
+
+                if (enemy.TankOrientation == 1)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                else if (enemy.TankOrientation == 3)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+
+
+                if (enemy.TankOrientation == 0)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 1)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            break;
+                    }
+                }
+                cellList[int.Parse(y)][int.Parse(x)].Refresh();
+            }
+        }
+
 
         /**
         * This method will call the KeyPressEvents by arrow keys

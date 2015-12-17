@@ -26,6 +26,7 @@ namespace Tanks_Client.beans
         private bool invalidCell = false;
         private DateTime updatedTime;
         private int index = -1;
+        
 
         public Player(string cName, string ipAdd, int cPort, int x, int y, int health)
         {
