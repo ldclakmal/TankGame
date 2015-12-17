@@ -46,6 +46,11 @@ namespace ClientApplication
             txtCmd.Enabled = false;
             btnSend.Enabled = false;
             btnStop.Enabled = false;
+            btnUp.Enabled = false;
+            btnDown.Enabled = false;
+            btnLeft.Enabled = false;
+            btnRight.Enabled = false;
+            btnShoot.Enabled = false;
             txtDes.Enabled = false;
             txtData.Enabled = false;
             isStop = false;
@@ -93,6 +98,11 @@ namespace ClientApplication
             txtCmd.Enabled = true;
             btnSend.Enabled = true;
             btnStop.Enabled = true;
+            btnUp.Enabled = true;
+            btnDown.Enabled = true;
+            btnLeft.Enabled = true;
+            btnRight.Enabled = true;
+            btnShoot.Enabled = true;
             thread = new Thread(() => StartListening("127.0.0.1", 7000)); //listeneing thread
             thread.Start();
         }
@@ -192,7 +202,7 @@ namespace ClientApplication
                         reply = Encoding.UTF8.GetString(inputStr.ToArray());
                         serverStream.Close();
                         string serverIp = s.Substring(0, s.IndexOf(":"));
-                        AppendTextBox(serverIp + "$" + reply);
+                        //AppendTextBox(serverIp + "$" + reply);
                         CreateObstacles(reply);
                     }
                     if (isStop)
@@ -665,6 +675,10 @@ namespace ClientApplication
                 String x = coordinates.Split(',')[0];
                 String y = coordinates.Split(',')[1];
 
+                lblPointsP0.Text = details[1].Split(';')[6] + " $";
+                lblCoinsP0.Text = details[1].Split(';')[5] + " $";
+                lblHealthP0.Text = details[1].Split(';')[4] + " %";
+
                 Label currentPositionLabel = cellList[myTank.CurrentX][myTank.CurrentY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
@@ -790,6 +804,10 @@ namespace ClientApplication
                 String _direction = details[2].Split(';')[2];
                 String x = coordinates.Split(',')[0];
                 String y = coordinates.Split(',')[1];
+
+                lblPointsP1.Text = details[2].Split(';')[6] + " $";
+                lblCoinsP1.Text = details[2].Split(';')[5] + " $";
+                lblHealthP1.Text = details[2].Split(';')[4] + " %";
 
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
@@ -917,6 +935,10 @@ namespace ClientApplication
                 String x = coordinates.Split(',')[0];
                 String y = coordinates.Split(',')[1];
 
+                lblPointsP2.Text = details[3].Split(';')[6] + " $";
+                lblCoinsP2.Text = details[3].Split(';')[5] + " $";
+                lblHealthP2.Text = details[3].Split(';')[4] + " %";
+
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
@@ -1043,6 +1065,10 @@ namespace ClientApplication
                 String x = coordinates.Split(',')[0];
                 String y = coordinates.Split(',')[1];
 
+                lblPointsP3.Text = details[4].Split(';')[6] + " $";
+                lblCoinsP3.Text = details[4].Split(';')[5] + " $";
+                lblHealthP3.Text = details[4].Split(';')[4] + " %";
+
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
@@ -1168,6 +1194,10 @@ namespace ClientApplication
                 String _direction = details[5].Split(';')[2];
                 String x = coordinates.Split(',')[0];
                 String y = coordinates.Split(',')[1];
+
+                lblPointsP4.Text = details[5].Split(';')[6] + " $";
+                lblCoinsP4.Text = details[5].Split(';')[5] + " $";
+                lblHealthP4.Text = details[5].Split(';')[4] + " %";
 
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
@@ -1322,7 +1352,7 @@ namespace ClientApplication
         }
 
         /**
-        * This method will stop threads when closing form
+        * This method will stop threads
         * */
         private void btnStop_Click(object sender, EventArgs e)
         {
@@ -1334,6 +1364,9 @@ namespace ClientApplication
                 }
         }
 
+        /**
+        * This method will stop threads when closing form
+        * */
         private void GUI_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dr = MessageBox.Show("Do you want to exit?", "Closing Tank Game", MessageBoxButtons.YesNo);
@@ -1353,6 +1386,32 @@ namespace ClientApplication
                 e.Cancel = true;
             }
         }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            SendCmd("127.0.0.1", 6000, "UP#");
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            SendCmd("127.0.0.1", 6000, "DOWN#");
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            SendCmd("127.0.0.1", 6000, "LEFT#");
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            SendCmd("127.0.0.1", 6000, "RIGHT#");
+        }
+
+        private void btnShoot_Click(object sender, EventArgs e)
+        {
+            SendCmd("127.0.0.1", 6000, "SHOOT#");
+        }
+
 
         /**
        * This method will update the position of the player
