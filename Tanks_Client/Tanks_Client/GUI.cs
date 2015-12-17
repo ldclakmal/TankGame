@@ -88,6 +88,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will update the position of the player
         * according to commands given in the text box
         * */
@@ -107,30 +108,28 @@ namespace ClientApplication
             thread.Start();
         }
 
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method will send the relavnt command to the server for the action of myTank
+        * */
         private void btnSend_Click(object sender, EventArgs e)
         {
             String command = txtCmd.Text.ToString();
-            //if (!isTooQuick)
-            //{
-            //    UpdateGui(command);
-            //}
             SendCmd("127.0.0.1", 6000, command);
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will call the method UpdateGui() for update the position of the player
         * of client GUI according to commands given in the text box
         * */
         private void ArrowKeysPressed(String command)
         {
-            //if (!isTooQuick)
-            //{
-            //    UpdateGui(command);
-            //}
             SendCmd("127.0.0.1", 6000, command);
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will send commands to the server
         * */
         public void SendCmd(String ip, int port, String data)
@@ -162,6 +161,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will listen all the messages sent by the server and print them in textboxes
         * */
         public void StartListening(String ip, int port)
@@ -241,6 +241,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method update obstacle in grid according to messages sent by server
         * */
         public void CreateObstacles(string msg)
@@ -415,6 +416,10 @@ namespace ClientApplication
             }
         }
 
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method generate the AI to myTank
+        * */
         public void StartAI(String ip, int port)
         {
             while (true)
@@ -432,6 +437,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method shows lifepacks in grid according to messages sent by server and consider the lifetime
         * */
         public void ShowLifePackLocation(string[] details)
@@ -457,6 +463,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method shows coins in grid according to messages sent by server and consider the lifetime
         * */
         public void ShowCoinLocation(string[] details)
@@ -482,6 +489,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method initiate tanks locations in grid according to messages sent by server
         * */
         public void InitiateTankLocation(string[] details)
@@ -662,7 +670,8 @@ namespace ClientApplication
         }
 
         /**
-        * This method update tanks in grid according to messages sent by server
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method update tanks movements in grid according to messages sent by server
         * */
         public void UpdateTankLocation(string[] details)
         {
@@ -1319,6 +1328,7 @@ namespace ClientApplication
 
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will call the KeyPressEvents by arrow keys
         * */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -1352,6 +1362,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will stop threads
         * */
         private void btnStop_Click(object sender, EventArgs e)
@@ -1365,6 +1376,7 @@ namespace ClientApplication
         }
 
         /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will stop threads when closing form
         * */
         private void GUI_FormClosing(object sender, FormClosingEventArgs e)
@@ -1387,6 +1399,10 @@ namespace ClientApplication
             }
         }
 
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * These methods will send the relavant commands to the server for the action of myTank
+        * */
         private void btnUp_Click(object sender, EventArgs e)
         {
             SendCmd("127.0.0.1", 6000, "UP#");
