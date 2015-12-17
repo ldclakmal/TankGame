@@ -100,10 +100,10 @@ namespace ClientApplication
         private void btnSend_Click(object sender, EventArgs e)
         {
             String command = txtCmd.Text.ToString();
-            if (!isTooQuick)
-            {
-                UpdateGui(command);
-            }
+            //if (!isTooQuick)
+            //{
+            //    UpdateGui(command);
+            //}
             SendCmd("127.0.0.1", 6000, command);
         }
 
@@ -113,10 +113,10 @@ namespace ClientApplication
         * */
         private void ArrowKeysPressed(String command)
         {
-            if (!isTooQuick)
-            {
-                UpdateGui(command);
-            }
+            //if (!isTooQuick)
+            //{
+            //    UpdateGui(command);
+            //}
             SendCmd("127.0.0.1", 6000, command);
         }
 
@@ -124,6 +124,8 @@ namespace ClientApplication
         * This method will update the position of the player
         * of client GUI according to commands given in the text box
         * */
+
+        /**
         private void UpdateGui(String command)
         {
             int orientation = tankOrientation[myTank];
@@ -262,6 +264,7 @@ namespace ClientApplication
             }
             positionLabel.Refresh();    //refresh the label in order to change to new layout
         }
+        **/
 
         /**
         * This method will send commands to the server
@@ -684,8 +687,132 @@ namespace ClientApplication
         * */
         public void UpdateTankLocation(string[] details)
         {
-            //---------------------------------- enemyTank1 - Movements -----------------------------------------------------
             if (details.Length >= 3)
+            {
+                Player myTank = (Player)playerArr[0];
+                String coordinates = details[1].Split(';')[1];
+                String _direction = details[1].Split(';')[2];
+                String x = coordinates.Split(',')[0];
+                String y = coordinates.Split(',')[1];
+
+                Label currentPositionLabel = cellList[myTank.CurrentX][myTank.CurrentY];
+                currentPositionLabel.BackColor = System.Drawing.Color.White;
+                currentPositionLabel.Image = null;
+                cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank1.jpg");
+                myTank.CurrentX = int.Parse(y);
+                myTank.CurrentY = int.Parse(x);
+
+                if (myTank.Direction == 1)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (myTank.Direction == 2)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                else if (myTank.Direction == 3)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+
+
+                if (myTank.Direction == 0)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            myTank.Direction = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            myTank.Direction = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            myTank.Direction = 3;
+                            break;
+                    }
+                }
+                else if (myTank.Direction == 1)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            myTank.Direction = 0;
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            myTank.Direction = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            myTank.Direction = 3;
+                            break;
+                    }
+                }
+                else if (myTank.Direction == 2)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            myTank.Direction = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            myTank.Direction = 1;
+                            break;
+
+                        case 2:
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            myTank.Direction = 3;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            myTank.Direction = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            myTank.Direction = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            myTank.Direction = 2;
+                            break;
+
+                        case 3:
+                            break;
+                    }
+                }
+                cellList[int.Parse(y)][int.Parse(x)].Refresh();
+            }
+
+            //---------------------------------- enemyTank1 - Movements -----------------------------------------------------
+            if (details.Length >= 4)
             {
                 Enemy enemy = (Enemy)enemyArr[0];
                 String coordinates = details[2].Split(';')[1];
@@ -810,7 +937,7 @@ namespace ClientApplication
             }
 
             //---------------------------------- enemyTank2 - Movements -----------------------------------------------------
-            if (details.Length >= 4)
+            if (details.Length >= 5)
             {
                 Enemy enemy = (Enemy)enemyArr[1];
                 String coordinates = details[3].Split(';')[1];
@@ -935,7 +1062,7 @@ namespace ClientApplication
             }
 
             //---------------------------------- enemyTank3 - Movements -----------------------------------------------------
-            if (details.Length >= 5)
+            if (details.Length >= 6)
             {
                 Enemy enemy = (Enemy)enemyArr[2];
                 String coordinates = details[4].Split(';')[1];
@@ -1060,7 +1187,7 @@ namespace ClientApplication
             }
 
             //---------------------------------- enemyTank4 - Movements -----------------------------------------------------
-            if (details.Length >= 6)
+            if (details.Length >= 7)
             {
                 Enemy enemy = (Enemy)enemyArr[3];
                 String coordinates = details[5].Split(';')[1];
