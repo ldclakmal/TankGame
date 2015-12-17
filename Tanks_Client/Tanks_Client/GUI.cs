@@ -79,7 +79,6 @@ namespace ClientApplication
                     cellList[i][j].BackColor = System.Drawing.Color.White;
                 }
             }
-
         }
 
         /**
@@ -315,7 +314,7 @@ namespace ClientApplication
                 }
 
                 //Establish connection upon client request
-                while (true)
+                while (!isStop)
                 {
                     //connection is connected socket
                     connection = listener.AcceptSocket();
@@ -646,22 +645,56 @@ namespace ClientApplication
             else if (details[0].Equals("G"))
             {
                 UpdateTankLocation(details);
+
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Global Updates : \n");
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
-                txtData.AppendText("Player 1 Location : " + details[1].Split(';')[1] + "\n");
-                txtData.AppendText("Player 1 Direction : " + details[1].Split(';')[2] + "\n");
-                txtData.AppendText("Player 1 Whether Shot : " + details[1].Split(';')[3] + "\n");
-                txtData.AppendText("Player 1 Health : " + details[1].Split(';')[4] + "\n");
-                txtData.AppendText("Player 1 Coins : " + details[1].Split(';')[5] + "\n");
-                txtData.AppendText("Player 1 Points : " + details[1].Split(';')[6] + "\n \n");
-                txtData.AppendText("Player 2 Location : " + details[2].Split(';')[1] + "\n");
-                txtData.AppendText("Player 2 Direction : " + details[2].Split(';')[2] + "\n");
-                txtData.AppendText("Player 2 Whether Shot : " + details[2].Split(';')[3] + "\n");
-                txtData.AppendText("Player 2 Health : " + details[2].Split(';')[4] + "\n");
-                txtData.AppendText("Player 2 Coins : " + details[2].Split(';')[5] + "\n");
-                txtData.AppendText("Player 2 Points : " + details[2].Split(';')[6] + "\n \n");
-                txtData.AppendText("X,Y Damage Levels : " + details[3].Split('#')[0] + "\n \n");
+                txtData.AppendText("MyTank Location : " + details[1].Split(';')[1] + "\n");
+                txtData.AppendText("MyTank Direction : " + details[1].Split(';')[2] + "\n");
+                txtData.AppendText("MyTank Whether Shot : " + details[1].Split(';')[3] + "\n");
+                txtData.AppendText("MyTank Health : " + details[1].Split(';')[4] + "\n");
+                txtData.AppendText("MyTank Coins : " + details[1].Split(';')[5] + "\n");
+                txtData.AppendText("MyTank Points : " + details[1].Split(';')[6] + "\n \n");
+                if (details.Length >= 4)
+                {
+                    txtData.AppendText("Enemy 1 Location : " + details[2].Split(';')[1] + "\n");
+                    txtData.AppendText("Enemy 1 Direction : " + details[2].Split(';')[2] + "\n");
+                    txtData.AppendText("Enemy 1 Whether Shot : " + details[2].Split(';')[3] + "\n");
+                    txtData.AppendText("Enemy 1 Health : " + details[2].Split(';')[4] + "\n");
+                    txtData.AppendText("Enemy 1 Coins : " + details[2].Split(';')[5] + "\n");
+                    txtData.AppendText("Enemy 1 Points : " + details[2].Split(';')[6] + "\n \n");
+                    txtData.AppendText("X,Y Damage Levels : " + details[3].Split('#')[0] + "\n \n");
+                }
+                if (details.Length >= 5)
+                {
+                    txtData.AppendText("Enemy 2 Location : " + details[3].Split(';')[1] + "\n");
+                    txtData.AppendText("Enemy 2 Direction : " + details[3].Split(';')[2] + "\n");
+                    txtData.AppendText("Enemy 2 Whether Shot : " + details[3].Split(';')[3] + "\n");
+                    txtData.AppendText("Enemy 2 Health : " + details[3].Split(';')[4] + "\n");
+                    txtData.AppendText("Enemy 2 Coins : " + details[3].Split(';')[5] + "\n");
+                    txtData.AppendText("Enemy 2 Points : " + details[3].Split(';')[6] + "\n \n");
+                    txtData.AppendText("X,Y Damage Levels : " + details[4].Split('#')[0] + "\n \n");
+                }
+                if (details.Length >= 6)
+                {
+                    txtData.AppendText("Enemy 3 Location : " + details[4].Split(';')[1] + "\n");
+                    txtData.AppendText("Enemy 3 Direction : " + details[4].Split(';')[2] + "\n");
+                    txtData.AppendText("Enemy 3 Whether Shot : " + details[4].Split(';')[3] + "\n");
+                    txtData.AppendText("Enemy 3 Health : " + details[4].Split(';')[4] + "\n");
+                    txtData.AppendText("Enemy 3 Coins : " + details[4].Split(';')[5] + "\n");
+                    txtData.AppendText("Enemy 3 Points : " + details[4].Split(';')[6] + "\n \n");
+                    txtData.AppendText("X,Y Damage Levels : " + details[5].Split('#')[0] + "\n \n");
+                }
+                if (details.Length >= 7)
+                {
+                    txtData.AppendText("Enemy 4 Location : " + details[5].Split(';')[1] + "\n");
+                    txtData.AppendText("Enemy 4 Direction : " + details[5].Split(';')[2] + "\n");
+                    txtData.AppendText("Enemy 4 Whether Shot : " + details[5].Split(';')[3] + "\n");
+                    txtData.AppendText("Enemy 4 Health : " + details[5].Split(';')[4] + "\n");
+                    txtData.AppendText("Enemy 4 Coins : " + details[5].Split(';')[5] + "\n");
+                    txtData.AppendText("Enemy 4 Points : " + details[5].Split(';')[6] + "\n \n");
+                    txtData.AppendText("X,Y Damage Levels : " + details[6].Split('#')[0] + "\n \n");
+                }
             }
             else if (details[0].Equals("C"))
             {
@@ -687,6 +720,7 @@ namespace ClientApplication
         * */
         public void UpdateTankLocation(string[] details)
         {
+            //---------------------------------- myTank - Movements -----------------------------------------------------
             if (details.Length >= 3)
             {
                 Player myTank = (Player)playerArr[0];
@@ -698,6 +732,7 @@ namespace ClientApplication
                 Label currentPositionLabel = cellList[myTank.CurrentX][myTank.CurrentY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
+                currentPositionLabel.Refresh();
                 cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank1.jpg");
                 myTank.CurrentX = int.Parse(y);
                 myTank.CurrentY = int.Parse(x);
@@ -823,6 +858,7 @@ namespace ClientApplication
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
+                currentPositionLabel.Refresh();
                 cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank2.jpg");
                 enemy.CurrentPositionX = int.Parse(y);
                 enemy.CurrentPositionY = int.Parse(x);
@@ -948,6 +984,7 @@ namespace ClientApplication
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
+                currentPositionLabel.Refresh();
                 cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank3.jpg");
                 enemy.CurrentPositionX = int.Parse(y);
                 enemy.CurrentPositionY = int.Parse(x);
@@ -1073,6 +1110,7 @@ namespace ClientApplication
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
+                currentPositionLabel.Refresh();
                 cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank4.jpg");
                 enemy.CurrentPositionX = int.Parse(y);
                 enemy.CurrentPositionY = int.Parse(x);
@@ -1198,6 +1236,7 @@ namespace ClientApplication
                 Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
+                currentPositionLabel.Refresh();
                 cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank5.jpg");
                 enemy.CurrentPositionX = int.Parse(y);
                 enemy.CurrentPositionY = int.Parse(x);
@@ -1365,8 +1404,13 @@ namespace ClientApplication
 
             if (dr == DialogResult.Yes)
             {
-                isStop = true;
-                e.Cancel = false;
+                if (connection != null)
+                    if (connection.Connected)
+                    {
+                        isStop = true;
+                        e.Cancel = false;
+                    }
+
             }
             else
             {

@@ -10,17 +10,6 @@ F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tank
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.dll
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.Fonts.dll
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\Tanks_Client\obj\Debug\ClientApplication.GUI.resources
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\Tanks_Client.exe.config
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.exe
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.pdb
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\Tanks_Client.exe
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\Tanks_Client.pdb
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.Design.dll
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.dll
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.Fonts.dll
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\ClientApplication.GUI.resources
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.Properties.Resources.resources
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csproj.GenerateResource.Cache
 C:\Users\Dimuthu\Desktop\Tank Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\Tanks_Client.exe.config
 C:\Users\Dimuthu\Desktop\Tank Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.exe
 C:\Users\Dimuthu\Desktop\Tank Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.pdb
@@ -33,4 +22,14 @@ C:\Users\Dimuthu\Desktop\Tank Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\
 C:\Users\Dimuthu\Desktop\Tank Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\ClientApplication.GUI.resources
 C:\Users\Dimuthu\Desktop\Tank Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.Properties.Resources.resources
 C:\Users\Dimuthu\Desktop\Tank Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csproj.GenerateResource.Cache
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csprojResolveAssemblyReference.cache
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\Tanks_Client.exe.config
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\Tanks_Client.exe
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\Tanks_Client.pdb
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.Design.dll
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.dll
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\bin\Debug\MetroFramework.Fonts.dll
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\ClientApplication.GUI.resources
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.Properties.Resources.resources
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csproj.GenerateResource.Cache
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.exe
+F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.pdb
