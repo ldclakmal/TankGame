@@ -679,12 +679,15 @@ namespace ClientApplication
             }
         }
 
-
+        /**
+        * This method update tanks in grid according to messages sent by server
+        * */
         public void UpdateTankLocation(string[] details)
         {
+            //---------------------------------- enemyTank1 - Movements -----------------------------------------------------
             if (details.Length >= 3)
             {
-                Enemy enemy = (Enemy)enemyArr[1];
+                Enemy enemy = (Enemy)enemyArr[0];
                 String coordinates = details[2].Split(';')[1];
                 String _direction = details[2].Split(';')[2];
                 String x = coordinates.Split(',')[0];
@@ -694,6 +697,381 @@ namespace ClientApplication
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
                 cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank2.jpg");
+                enemy.CurrentPositionX = int.Parse(y);
+                enemy.CurrentPositionY = int.Parse(x);
+
+                if (enemy.TankOrientation == 1)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                else if (enemy.TankOrientation == 3)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+
+
+                if (enemy.TankOrientation == 0)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 1)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            break;
+                    }
+                }
+                cellList[int.Parse(y)][int.Parse(x)].Refresh();
+            }
+
+            //---------------------------------- enemyTank2 - Movements -----------------------------------------------------
+            if (details.Length >= 4)
+            {
+                Enemy enemy = (Enemy)enemyArr[1];
+                String coordinates = details[3].Split(';')[1];
+                String _direction = details[3].Split(';')[2];
+                String x = coordinates.Split(',')[0];
+                String y = coordinates.Split(',')[1];
+
+                Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
+                currentPositionLabel.BackColor = System.Drawing.Color.White;
+                currentPositionLabel.Image = null;
+                cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank3.jpg");
+                enemy.CurrentPositionX = int.Parse(y);
+                enemy.CurrentPositionY = int.Parse(x);
+
+                if (enemy.TankOrientation == 1)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                else if (enemy.TankOrientation == 3)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+
+
+                if (enemy.TankOrientation == 0)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 1)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            break;
+                    }
+                }
+                cellList[int.Parse(y)][int.Parse(x)].Refresh();
+            }
+
+            //---------------------------------- enemyTank3 - Movements -----------------------------------------------------
+            if (details.Length >= 5)
+            {
+                Enemy enemy = (Enemy)enemyArr[2];
+                String coordinates = details[4].Split(';')[1];
+                String _direction = details[4].Split(';')[2];
+                String x = coordinates.Split(',')[0];
+                String y = coordinates.Split(',')[1];
+
+                Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
+                currentPositionLabel.BackColor = System.Drawing.Color.White;
+                currentPositionLabel.Image = null;
+                cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank4.jpg");
+                enemy.CurrentPositionX = int.Parse(y);
+                enemy.CurrentPositionY = int.Parse(x);
+
+                if (enemy.TankOrientation == 1)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                }
+                else if (enemy.TankOrientation == 3)
+                {
+                    cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                }
+
+
+                if (enemy.TankOrientation == 0)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 1)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else if (enemy.TankOrientation == 2)
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            break;
+
+                        case 3:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 3;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (int.Parse(_direction))
+                    {
+                        case 0:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                            enemy.TankOrientation = 0;
+                            break;
+
+                        case 1:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                            enemy.TankOrientation = 1;
+                            break;
+
+                        case 2:
+                            cellList[int.Parse(y)][int.Parse(x)].Image.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                            enemy.TankOrientation = 2;
+                            break;
+
+                        case 3:
+                            break;
+                    }
+                }
+                cellList[int.Parse(y)][int.Parse(x)].Refresh();
+            }
+
+            //---------------------------------- enemyTank4 - Movements -----------------------------------------------------
+            if (details.Length >= 6)
+            {
+                Enemy enemy = (Enemy)enemyArr[3];
+                String coordinates = details[5].Split(';')[1];
+                String _direction = details[5].Split(';')[2];
+                String x = coordinates.Split(',')[0];
+                String y = coordinates.Split(',')[1];
+
+                Label currentPositionLabel = cellList[enemy.CurrentPositionX][enemy.CurrentPositionY];
+                currentPositionLabel.BackColor = System.Drawing.Color.White;
+                currentPositionLabel.Image = null;
+                cellList[int.Parse(y)][int.Parse(x)].Image = new Bitmap("tank5.jpg");
                 enemy.CurrentPositionX = int.Parse(y);
                 enemy.CurrentPositionY = int.Parse(x);
 
