@@ -422,84 +422,264 @@ namespace ClientApplication
         * */
         public void StartAI(String ip, int port)
         {
-            /**
             while (true)
             {
                 string[] details = reply.Split(':');
-                if (details[0].Equals("C"))
+                if (details[0].Equals("L"))
                 {
                     String[] coinCoordinates = details[1].Split(',');
-                    int x = int.Parse(coinCoordinates[0]);
-                    int y = int.Parse(coinCoordinates[1]);
-                    //algorithm....
-                    Console.WriteLine("X : " + x + " " + " Y : " + y);
-                }
-            }
-             * **/
+                    int x = int.Parse(coinCoordinates[1]);
+                    int y = int.Parse(coinCoordinates[0]);
+                    //Console.WriteLine("X : " + x + " " + " Y : " + y);
 
-            while (true)
-            {
-                string[] details = reply.Split(':');
+                    Cell[][] gridCell = new Cell[10][];
 
-                if (details[0].Equals("G"))
-                {
-                    String coordinates = details[1].Split(';')[1];
-                    String _direction = details[1].Split(';')[2];
-                    int x = int.Parse(coordinates.Split(',')[0]);
-                    int y = int.Parse(coordinates.Split(',')[1]);
-
-                    if (x != 9)
+                    for (int i = 0; i < 10; i++)
                     {
-                        if (grid[y][x + 1] != 1)
+                        gridCell[i] = new Cell[10];
+                    }
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
                         {
-                            SendCmd(ip, port, "RIGHT#");
-                            Thread.Sleep(1000);
-                        }
-                        else
-                        {
-                            SendCmd(ip, port, "DOWN#");
-                            Thread.Sleep(1000);
+                            if (grid[i][j] == 1)
+                            {
+                                gridCell[i][j] = new Cell(i, j, "Non Movable", null, false);
+                            }
+                            else
+                            {
+                                gridCell[i][j] = new Cell(i, j, "Movable", null, false);
+                            }
                         }
                     }
-                    else
+
+                    gridCell[x][y] = new Cell(x, y, "Movable", null, true);
+
+                    BFS bfs = new BFS();
+                    ArrayList path = bfs.BFSsearch(gridCell, new Cell(0, 0, "Movable", null, false));
+                    path.Add(new Cell(0, 0, "Movable", null, false));
+
+                    int preRow = 0;
+                    int preCol = 0;
+                    int direction = 0;
+
+                    Stack<string> cmdStack = new Stack<string>();
+
+                    for (int i = 0; i < path.Count; i++)
                     {
-                        while (y != 3)
+                        Cell pathCell = (Cell)path[i];
+                        int curRow = pathCell.Row;
+                        int curCol = pathCell.Col;
+
+                        if (preRow == curRow)
                         {
-                            SendCmd(ip, port, "DOWN#");
-                            Thread.Sleep(1000);
+                            if (preCol < curCol)
+                            {
+                                if (direction != 3)
+                                {
+                                    cmdStack.Push("LEFT#");
+                                }
+                                cmdStack.Push("LEFT#");
+                                direction = 3;
+                            }
+                            else
+                            {
+                                if (direction != 1)
+                                {
+                                    cmdStack.Push("RIGHT#");
+                                }
+                                cmdStack.Push("RIGHT#");
+                                direction = 1;
+                            }
+                        }
+
+                        if (preCol == curCol)
+                        {
+                            if (preRow < curRow)
+                            {
+                                if (direction != 0)
+                                {
+                                    cmdStack.Push("UP#");
+                                }
+                                cmdStack.Push("UP#");
+                                direction = 0;
+                            }
+                            else
+                            {
+                                if (direction != 2)
+                                {
+                                    cmdStack.Push("DOWN#");
+                                }
+                                cmdStack.Push("DOWN#");
+                                direction = 2;
+                            }
+                        }
+
+                        preRow = pathCell.Row;
+                        preCol = pathCell.Col;
+                        Console.WriteLine(pathCell.Row + "  " + pathCell.Col + " \n");
+                    }
+
+                    for (int i = 0; i < cmdStack.Count; i++)
+                    {
+                        Console.WriteLine(cmdStack.Peek());
+                        SendCmd(ip, port, cmdStack.Pop());
+                        Thread.Sleep(1200);
+                    }
+
+
+
+                    /**
+                    while (true)
+                    {
+                        string[] details = reply.Split(':');
+                        if (details[0].Equals("C"))
+                        {
+                            String[] coinCoordinates = details[1].Split(',');
+                            int x = int.Parse(coinCoordinates[0]);
+                            int y = int.Parse(coinCoordinates[1]);
+                            //algorithm....
+                            Console.WriteLine("X : " + x + " " + " Y : " + y);
                         }
                     }
-                }
+                     * **/
 
-                /**
-                for (int i = 0; i < 9; i++)
-                {
-                    if (grid[0][i + 1] != 1)
+                    /**
+                    int tempX = 0;
+                    int tempY = 0;
+                    int count = 0;
+                    Boolean bool1 = true;
+                    Boolean bool2 = true;
+                    Boolean bool3 = true;
+                    Boolean bool4 = true;
+
+                    while (true)
                     {
-                        SendCmd(ip, port, "RIGHT#");
-                        Thread.Sleep(1000);
-                    }
-                    else
-                    {
-                        SendCmd(ip, port, "DOWN#");
-                        Thread.Sleep(1000);
-                    }
+                        string[] details = reply.Split(':');
+
+                        if (details[0].Equals("G"))
+                        {
+                            String coordinates = details[1].Split(';')[1];
+                            String _direction = details[1].Split(';')[2];
+                            int x = int.Parse(coordinates.Split(',')[0]);
+                            int y = int.Parse(coordinates.Split(',')[1]);
+
+                            if (tempX == x && tempY == y && count == 5)
+                            {
+                                count = 0;
+                                SendCmd(ip, port, "SHOOT#");
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                count++;
+                                if (bool1)
+                                {
+                                    while (grid[y][x + 1] != 1)
+                                    {
+                                        SendCmd(ip, port, "RIGHT#");
+                                        Thread.Sleep(1000);
+                                        if (x == 8)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    bool1 = false;
+                                }
+                                else if (bool2)
+                                {
+                                    while (grid[y + 1][x] != 1)
+                                    {
+                                        SendCmd(ip, port, "DOWN#");
+                                        Thread.Sleep(1000);
+                                    }
+                                    bool2 = false;
+                                }
+                                else if (bool3)
+                                {
+                                    while (grid[y][x-1] != 1)
+                                    {
+                                        SendCmd(ip, port, "LEFT#");
+                                        Thread.Sleep(1000);
+                                    }
+                                    bool3 = false;
+                                }
+                                else if (bool4)
+                                {
+                                    while (grid[y-1][x] != 1)
+                                    {
+                                        SendCmd(ip, port, "UP#");
+                                        Thread.Sleep(1000);
+                                    }
+                                    bool1 = true;
+                                    bool2 = true;
+                                    bool3 = true;
+                                    bool4 = true;
+                                }
+
+                                //if (x != 9)
+                                //{
+                                //    if (grid[y][x + 1] != 1)
+                                //    {
+                                //        SendCmd(ip, port, "RIGHT#");
+                                //        Thread.Sleep(1000);
+                                //    }
+                                //    else if (grid[y + 1][x] != 1)
+                                //    {
+                                //        SendCmd(ip, port, "DOWN#");
+                                //        Thread.Sleep(1000);
+                                //    }
+                                //}
+                                //else
+                                //{
+                                //    if (grid[y][x - 1] != 1)
+                                //    {
+                                //        SendCmd(ip, port, "LEFT#");
+                                //        Thread.Sleep(1000);
+                                //    }
+                                //    else if (grid[y - 1][x] != 1)
+                                //    {
+                                //        SendCmd(ip, port, "UP#");
+                                //        Thread.Sleep(1000);
+                                //    }
+                                //}
+                            }
+
+                            tempX = x;
+                            tempY = y;
+                        }
+
+                        /**
+                        for (int i = 0; i < 9; i++)
+                        {
+                            if (grid[0][i + 1] != 1)
+                            {
+                                SendCmd(ip, port, "RIGHT#");
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                SendCmd(ip, port, "DOWN#");
+                                Thread.Sleep(1000);
+                            }
+                        }
+                        for (int i = 0; i < 9; i++)
+                        {
+                            if (grid[i+1][9] != 1)
+                            {
+                                SendCmd(ip, port, "DOWN#");
+                                Thread.Sleep(1000);
+                            }
+                            else
+                            {
+                                SendCmd(ip, port, "LEFT#");
+                                Thread.Sleep(1000);
+                            }
+                        }
+                         * 
+                         * **/
                 }
-                for (int i = 0; i < 9; i++)
-                {
-                    if (grid[i+1][9] != 1)
-                    {
-                        SendCmd(ip, port, "DOWN#");
-                        Thread.Sleep(1000);
-                    }
-                    else
-                    {
-                        SendCmd(ip, port, "LEFT#");
-                        Thread.Sleep(1000);
-                    }
-                }
-                 * 
-                 * **/
             }
         }
 
@@ -1642,5 +1822,144 @@ namespace ClientApplication
         }
         **/
 
+    }
+
+
+    class BFS
+    {
+        Cell healthPack = null;
+        ArrayList path = new ArrayList();
+        public ArrayList BFSsearch(Cell[][] Grid, Cell start)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Cell cell = Grid[i][j];
+                    cell.Distance = 100000;
+                    cell.Parent = null;
+                }
+            }
+            Queue q = new Queue();
+            start.Distance = 0;
+            q.Enqueue(start);
+            bool found = false;
+            while (q.Count != 0)
+            {
+                Cell current = (Cell)q.Dequeue();
+                ArrayList adjCells = new ArrayList();
+                if (current.Col - 1 != -1)
+                {
+                    adjCells.Add(Grid[current.Row][current.Col - 1]);
+                }
+                if (current.Col + 1 != 10)
+                {
+                    adjCells.Add(Grid[current.Row][current.Col + 1]);
+                }
+                if (current.Row + 1 != 10)
+                {
+                    adjCells.Add(Grid[current.Row + 1][current.Col]);
+                }
+                if (current.Row - 1 != -1)
+                {
+                    adjCells.Add(Grid[current.Row - 1][current.Col]);
+                }
+                for (int j = 0; j < adjCells.Count; j++)
+                {
+                    Cell adj = (Cell)adjCells[j];
+                    if (adj.Distance == 100000 && adj.Value.Equals("Movable"))
+                    {
+                        adj.Distance = current.Distance + 1;
+                        adj.Parent = current;
+                        q.Enqueue(adj);
+                    }
+                    if (adj.IsHealth)
+                    {
+                        healthPack = (Cell)adjCells[j];
+                        found = true;
+                    }
+                    if (found)
+                    {
+                        break;
+                    }
+                }
+                if (found)
+                {
+                    break;
+                }
+            }
+            Cell destination = healthPack;
+
+            while (destination != start)
+            {
+                path.Add(destination);
+                destination = destination.Parent;
+
+            }
+
+            return path;
+
+        }
+    }
+
+    class Cell
+    {
+
+        public Cell(int Row, int Col, String value, Cell parent, bool isHealth)
+        {
+            this.Col = Col;
+            this.Row = Row;
+            this.Value = value;
+            this.Parent = parent;
+            this.IsHealth = isHealth;
+        }
+
+        private String value;
+
+        private int col;
+
+        private int row;
+
+        public int Row
+        {
+            get { return row; }
+            set { row = value; }
+        }
+
+        public int Col
+        {
+            get { return col; }
+            set { col = value; }
+        }
+
+        public String Value
+        {
+            get { return this.value; }
+            set { this.value = value; }
+        }
+
+        private Cell parent;
+
+        public Cell Parent
+        {
+            get { return parent; }
+            set { parent = value; }
+        }
+
+        private int distance;
+
+        public int Distance
+        {
+            get { return distance; }
+            set { distance = value; }
+        }
+
+        private bool isHealth;
+
+        public bool IsHealth
+        {
+            get { return isHealth; }
+            set { isHealth = value; }
+        }
     }
 }
