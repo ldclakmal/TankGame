@@ -22,6 +22,12 @@ namespace Tanks_Client.beans
             lifeTime = time;
         }
 
+        public LifePack(int x, int y)
+        {
+            posX = x;
+            posY = y;
+        }
+
         public int DisappearBalance
         {
             get { return disappearBalance; }

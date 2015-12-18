@@ -315,7 +315,7 @@ namespace ClientApplication
             {
                 InitiateTankLocation(details);
 
-                thread = new Thread(() => StartAI("127.0.0.1", 7000)); //AI thread
+                thread = new Thread(() => StartAI("127.0.0.1", 6000)); //AI thread
                 thread.Start();
 
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
@@ -422,6 +422,7 @@ namespace ClientApplication
         * */
         public void StartAI(String ip, int port)
         {
+            /**
             while (true)
             {
                 string[] details = reply.Split(':');
@@ -433,6 +434,72 @@ namespace ClientApplication
                     //algorithm....
                     Console.WriteLine("X : " + x + " " + " Y : " + y);
                 }
+            }
+             * **/
+
+            while (true)
+            {
+                string[] details = reply.Split(':');
+
+                if (details[0].Equals("G"))
+                {
+                    String coordinates = details[1].Split(';')[1];
+                    String _direction = details[1].Split(';')[2];
+                    int x = int.Parse(coordinates.Split(',')[0]);
+                    int y = int.Parse(coordinates.Split(',')[1]);
+
+                    if (x != 9)
+                    {
+                        if (grid[y][x + 1] != 1)
+                        {
+                            SendCmd(ip, port, "RIGHT#");
+                            Thread.Sleep(1000);
+                        }
+                        else
+                        {
+                            SendCmd(ip, port, "DOWN#");
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    else
+                    {
+                        while (y != 3)
+                        {
+                            SendCmd(ip, port, "DOWN#");
+                            Thread.Sleep(1000);
+                        }
+                    }
+                }
+
+                /**
+                for (int i = 0; i < 9; i++)
+                {
+                    if (grid[0][i + 1] != 1)
+                    {
+                        SendCmd(ip, port, "RIGHT#");
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        SendCmd(ip, port, "DOWN#");
+                        Thread.Sleep(1000);
+                    }
+                }
+                for (int i = 0; i < 9; i++)
+                {
+                    if (grid[i+1][9] != 1)
+                    {
+                        SendCmd(ip, port, "DOWN#");
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        SendCmd(ip, port, "LEFT#");
+                        Thread.Sleep(1000);
+                    }
+                }
+                 * 
+                 * **/
             }
         }
 

@@ -517,14 +517,150 @@ namespace Tanks_Client.AI
             int x2 = Int32.Parse(d.Name[0].ToString());
             int y2 = Int32.Parse(d.Name[2].ToString());
             if (x1 < x2)
-                return Constants.RIGHT;
+                return "RIGHT#";
             if (x1 > x2)
-                return Constants.LEFT;
+                return "LEFT#";
             if (y1 < y2)
-                return Constants.DOWN;
+                return "DOWN#";
             if (y1 > y2)
-                return Constants.UP;
+                return "UP#";
             return "DD";
+        }
+
+        public MapItem[,] createMapItemList(String[,] map)
+        {
+            int size = map.GetLength(0);
+            MapItem[,] itList = new MapItem[size, size];
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    itList[j, i] = new MapItem();
+                    /*if (new String[] { MapItem.BLANK, MapItem.COIN, MapItem.LIFEPACK }.Contains(map[j, i], StringComparer.Ordinal))                    
+                        itList[j, i].Contain = MapItem.BLANK;
+                    else
+                        itList[j, i].Contain = MapItem.STONE;*/
+                    itList[j, i].Contain = map[j, i];
+                    if (DecodeOperations.playerDir.Contains(map[j, i], StringComparer.Ordinal))
+                    {
+                        itList[j, i].Dir = Array.FindIndex(DecodeOperations.playerDir, pl => pl.Contains(map[j, i]));
+                    }
+
+                    itList[j, i].Name = i.ToString() + "," + j.ToString();
+                    itList[j, i].Pre = null;
+                    itList[j, i].Dis = Int32.MaxValue - 1;
+                }
+            }
+            return itList;
+        }
+
+        public bool shouldShoot(MapItem[,] map, MapItem player)
+        {
+            int x = Int32.Parse(player.Name[0].ToString());
+            int y = Int32.Parse(player.Name[2].ToString());
+            String[] notShoot = { DecodeOperations.stoneSimbol };
+            int dir = player.Dir;
+
+            //Console.WriteLine(x+" :::: "+y);
+            switch (dir)
+            {
+                case 0:
+                    while (y > 0)
+                    {
+                        y--;
+                        if (notShoot.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+                case 1:
+                    while (x < map.GetLength(0) - 1)
+                    {
+                        x++;
+                        if (notShoot.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+                case 2:
+                    while (y < map.GetLength(0) - 1)
+                    {
+                        y++;
+                        if (notShoot.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+                case 3:
+                    while (x > 0)
+                    {
+                        x--;
+                        if (notShoot.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[y, x].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+            }
+            return false;
+        }
+
+        public bool removeFromDanger(MapItem[,] map, MapItem player)
+        {
+
+
+            int x = Int32.Parse(player.Name[0].ToString());
+            int y = Int32.Parse(player.Name[2].ToString());
+            String[] notShoot = { DecodeOperations.stoneSimbol, DecodeOperations.waterSimbol };
+            int dir = player.Dir;
+            //Console.WriteLine(x + " :::: " + y);
+            switch (dir)
+            {
+                case 0:
+                    while (x > 0)
+                    {
+                        x--;
+                        if (notShoot.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+                case 1:
+                    while (y < map.GetLength(0) - 1)
+                    {
+                        y++;
+                        if (notShoot.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+                case 2:
+                    while (x < map.GetLength(0) - 1)
+                    {
+                        x++;
+                        if (notShoot.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+                case 3:
+                    while (y > 0)
+                    {
+                        y--;
+                        if (notShoot.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return false;
+                        if (DecodeOperations.playerDir.Contains(map[x, y].Contain, StringComparer.Ordinal))
+                            return true;
+                    }
+                    break;
+            }
+            return false;
         }
     }
 }

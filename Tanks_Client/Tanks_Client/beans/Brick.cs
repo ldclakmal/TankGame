@@ -19,6 +19,12 @@ namespace Tanks_Client.beans
             this.health = health;
         }
 
+        public Brick(int x, int y)
+        {
+            posX = x;
+            posY = y;
+        }
+
         public int PosX
         {
             get { return posX; }

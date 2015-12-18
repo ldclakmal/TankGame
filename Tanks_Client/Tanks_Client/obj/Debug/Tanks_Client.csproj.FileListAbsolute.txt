@@ -33,4 +33,3 @@ F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tank
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csproj.GenerateResource.Cache
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.exe
 F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.pdb
-F:\ACADEMIC\Semester 4\PC - CS2212 - Programming Challange II\Game\TankGame\Tanks_Client\Tanks_Client\obj\Debug\Tanks_Client.csprojResolveAssemblyReference.cache

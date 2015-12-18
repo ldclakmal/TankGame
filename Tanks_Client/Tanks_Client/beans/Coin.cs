@@ -24,6 +24,13 @@ namespace Tanks_Client.beans
             valueCoin = value;
         }
 
+        public Coin(int x, int y, int value)
+        {
+            posX = x;
+            posY = y;
+            valueCoin = value;
+        }
+
         public int DisappearBalance
         {
             get { return disappearBalance; }

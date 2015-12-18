@@ -26,7 +26,7 @@ namespace Tanks_Client.beans
         private bool invalidCell = false;
         private DateTime updatedTime;
         private int index = -1;
-        
+
 
         public Player(string cName, string ipAdd, int cPort, int x, int y, int health)
         {
@@ -36,6 +36,25 @@ namespace Tanks_Client.beans
             startX = x;
             startY = y;
             this.health = health;
+        }
+
+        public Player(string cName, int x, int y, int direction)
+        {
+            name = cName;
+            startX = x;
+            startY = y;
+            this.direction = direction;
+        }
+
+        public void setAll(int x, int y, int d, Boolean ws, int h, int c, int p)
+        {
+            this.startX = x;
+            this.startY = y;
+            this.direction = d;
+            this.shot = ws;
+            this.health = h;
+            this.coins = c;
+            this.pointsEarned = p;
         }
 
         public int Coins
