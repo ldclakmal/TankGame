@@ -7,10 +7,10 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using MetroFramework.Controls;
 using System.Drawing;
 using System.Collections;
 using Tanks_Client.beans;
+using Tanks_Client.AI;
 
 namespace ClientApplication
 {
@@ -78,7 +78,7 @@ namespace ClientApplication
                                            ,new Label[]{ pos7_1, pos7_2, pos7_3,pos7_4,pos7_5,pos7_6,pos7_7,pos7_8,pos7_9,pos7_10 }
                                            ,new Label[]{ pos8_1, pos8_2, pos8_3,pos8_4,pos8_5,pos8_6,pos8_7,pos8_8,pos8_9,pos8_10 }
                                            ,new Label[]{ pos9_1, pos9_2, pos9_3,pos9_4,pos9_5,pos9_6,pos9_7,pos9_8,pos9_9,pos9_10 }
-                                           ,new Label[]{ pos10_1, pos10_2, pos10_3,pos10_4,pos10_5,pos10_6,pos10_7,pos10_8,pos10_9,pos10_10 }                                        
+                                           ,new Label[]{ pos10_1, pos10_2, pos10_3,pos10_4,pos10_5,pos10_6,pos10_7,pos10_8,pos10_9,pos10_10 }
                                             };
 
             for (int i = 0; i < 10; i++)
@@ -91,50 +91,9 @@ namespace ClientApplication
         }
 
         /**
-         * ------------------------------------------------------------------------------------------------------------------------------------
-        * This method will update the position of the player
-        * according to commands given in the text box
-        * */
-        private void btnJoin_Click(object sender, EventArgs e)
-        {
-            SendCmd("127.0.0.1", 6000, "JOIN#"); //player connect with server
-            btnJoin.Enabled = false;
-            txtCmd.Enabled = true;
-            btnSend.Enabled = true;
-            btnStop.Enabled = true;
-            btnUp.Enabled = true;
-            btnDown.Enabled = true;
-            btnLeft.Enabled = true;
-            btnRight.Enabled = true;
-            btnShoot.Enabled = true;
-            thread = new Thread(() => StartListening("127.0.0.1", 7000)); //listeneing thread
-            thread.Start();
-        }
-
-        /**
-         * ------------------------------------------------------------------------------------------------------------------------------------
-        * This method will send the relavnt command to the server for the action of myTank
-        * */
-        private void btnSend_Click(object sender, EventArgs e)
-        {
-            String command = txtCmd.Text.ToString();
-            SendCmd("127.0.0.1", 6000, command);
-        }
-
-        /**
-         * ------------------------------------------------------------------------------------------------------------------------------------
-        * This method will call the method UpdateGui() for update the position of the player
-        * of client GUI according to commands given in the text box
-        * */
-        private void ArrowKeysPressed(String command)
-        {
-            SendCmd("127.0.0.1", 6000, command);
-        }
-
-        /**
-         * ------------------------------------------------------------------------------------------------------------------------------------
-        * This method will send commands to the server
-        * */
+        * ------------------------------------------------------------------------------------------------------------------------------------
+       * This method will send commands to the server
+       * */
         public void SendCmd(String ip, int port, String data)
         {
             try
@@ -219,6 +178,82 @@ namespace ClientApplication
             {
                 MessageBox.Show("\nError at myPro:StartListening().....\n" + e.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method will update the position of the player
+        * according to commands given in the text box
+        * */
+        private void btnJoin_Click(object sender, EventArgs e)
+        {
+            SendCmd("127.0.0.1", 6000, "JOIN#"); //player connect with server
+            btnJoin.Enabled = false;
+            txtCmd.Enabled = true;
+            btnSend.Enabled = true;
+            btnStop.Enabled = true;
+            btnUp.Enabled = true;
+            btnDown.Enabled = true;
+            btnLeft.Enabled = true;
+            btnRight.Enabled = true;
+            btnShoot.Enabled = true;
+            thread = new Thread(() => StartListening("127.0.0.1", 7000)); //listeneing thread
+            thread.Start();
+        }
+
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method will send the relavnt command to the server for the action of myTank
+        * */
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            String command = txtCmd.Text.ToString();
+            SendCmd("127.0.0.1", 6000, command);
+        }
+
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method will call the method UpdateGui() for update the position of the player
+        * of client GUI according to commands given in the text box
+        * */
+        private void ArrowKeysPressed(String command)
+        {
+            SendCmd("127.0.0.1", 6000, command);
+        }
+
+
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method will call the KeyPressEvents by arrow keys
+        * */
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Left)
+            {
+                ArrowKeysPressed("LEFT#");
+                return true;
+            }
+            else if (keyData == Keys.Right)
+            {
+                ArrowKeysPressed("RIGHT#");
+                return true;
+            }
+            else if (keyData == Keys.Up)
+            {
+                ArrowKeysPressed("UP#");
+                return true;
+            }
+            else if (keyData == Keys.Down)
+            {
+                ArrowKeysPressed("DOWN#");
+                return true;
+            }
+            else if (keyData == Keys.Space)
+            {
+                ArrowKeysPressed("SHOOT#");
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         /**
@@ -416,122 +451,6 @@ namespace ClientApplication
                 txtData.AppendText("--------------------------------------------------------------------------------------------------- \n");
                 txtData.AppendText("Life Pack Co-ordinates : " + details[1] + "\n");
                 txtData.AppendText("Time of Life Packs : " + details[2].Split('#')[0] + "\n\n");
-            }
-        }
-
-        /**
-         * ------------------------------------------------------------------------------------------------------------------------------------
-        * This method generate the AI to myTank
-        * */
-        public void StartAI(String ip, int port)
-        {
-            while (true)
-            {
-                string[] details = reply.Split(':');
-                if (details[0].Equals("L"))
-                {
-                    String[] healthCoordinates = details[1].Split(',');
-                    int x = int.Parse(healthCoordinates[1]);
-                    int y = int.Parse(healthCoordinates[0]);
-                    Console.WriteLine("Health Coordinates : X : " + x + " " + " Y : " + y);
-
-                    Cell[][] gridCell = new Cell[10][];
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        gridCell[i] = new Cell[10];
-                    }
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        for (int j = 0; j < 10; j++)
-                        {
-                            if (grid[i][j] == 1)
-                            {
-                                gridCell[i][j] = new Cell(i, j, "Non Movable", null, false);
-                            }
-                            else
-                            {
-                                gridCell[i][j] = new Cell(i, j, "Movable", null, false);
-                            }
-                        }
-                    }
-
-                    gridCell[x][y] = new Cell(x, y, "Movable", null, true);
-
-                    BFS bfs = new BFS();
-                    Console.WriteLine("Tank Coordinates : X : " + TankX + " " + " Y : " + TankY);
-                    ArrayList path = bfs.BFSsearch(gridCell, new Cell(TankX, TankY, "Movable", null, false));
-                    path.Add(new Cell(TankX, TankY, "Movable", null, false));
-
-                    int preRow = 0;
-                    int preCol = 0;
-                    int direction = 0;
-
-                    Stack<string> cmdStack = new Stack<string>();
-
-                    for (int i = 0; i < path.Count; i++)
-                    {
-                        Cell pathCell = (Cell)path[i];
-                        int curRow = pathCell.Row;
-                        int curCol = pathCell.Col;
-
-                        if (preRow == curRow)
-                        {
-                            if (preCol < curCol)
-                            {
-                                if (direction != 3)
-                                {
-                                    cmdStack.Push("LEFT#");
-                                }
-                                cmdStack.Push("LEFT#");
-                                direction = 3;
-                            }
-                            else
-                            {
-                                if (direction != 1)
-                                {
-                                    cmdStack.Push("RIGHT#");
-                                }
-                                cmdStack.Push("RIGHT#");
-                                direction = 1;
-                            }
-                        }
-
-                        if (preCol == curCol)
-                        {
-                            if (preRow < curRow)
-                            {
-                                if (direction != 0)
-                                {
-                                    cmdStack.Push("UP#");
-                                }
-                                cmdStack.Push("UP#");
-                                direction = 0;
-                            }
-                            else
-                            {
-                                if (direction != 2)
-                                {
-                                    cmdStack.Push("DOWN#");
-                                }
-                                cmdStack.Push("DOWN#");
-                                direction = 2;
-                            }
-                        }
-
-                        preRow = pathCell.Row;
-                        preCol = pathCell.Col;
-                        Console.WriteLine(pathCell.Row + "  " + pathCell.Col);
-                    }
-
-                    for (int i = 0; i < cmdStack.Count; i++)
-                    {
-                        Console.WriteLine(cmdStack.Peek());
-                        SendCmd(ip, port, cmdStack.Pop());
-                        Thread.Sleep(1200);
-                    }
-                }
             }
         }
 
@@ -1428,41 +1347,6 @@ namespace ClientApplication
             }
         }
 
-
-        /**
-         * ------------------------------------------------------------------------------------------------------------------------------------
-        * This method will call the KeyPressEvents by arrow keys
-        * */
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == Keys.Left)
-            {
-                ArrowKeysPressed("LEFT#");
-                return true;
-            }
-            else if (keyData == Keys.Right)
-            {
-                ArrowKeysPressed("RIGHT#");
-                return true;
-            }
-            else if (keyData == Keys.Up)
-            {
-                ArrowKeysPressed("UP#");
-                return true;
-            }
-            else if (keyData == Keys.Down)
-            {
-                ArrowKeysPressed("DOWN#");
-                return true;
-            }
-            else if (keyData == Keys.Space)
-            {
-                ArrowKeysPressed("SHOOT#");
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
         /**
          * ------------------------------------------------------------------------------------------------------------------------------------
         * This method will stop threads
@@ -1530,88 +1414,125 @@ namespace ClientApplication
             SendCmd("127.0.0.1", 6000, "SHOOT#");
         }
 
-    }
-
-
-    class BFS
-    {
-        Cell healthPack = null;
-        ArrayList path = new ArrayList();
-        public ArrayList BFSsearch(Cell[][] Grid, Cell start)
+        /**
+         * ------------------------------------------------------------------------------------------------------------------------------------
+        * This method generate the AI to myTank
+        * */
+        public void StartAI(String ip, int port)
         {
-            for (int i = 0; i < 10; i++)
+            while (true)
             {
-                for (int j = 0; j < 10; j++)
+                string[] details = reply.Split(':');
+                if (details[0].Equals("L"))
                 {
-                    Cell cell = Grid[i][j];
-                    cell.Distance = 100000;
-                    cell.Parent = null;
+                    String[] healthCoordinates = details[1].Split(',');
+                    int x = int.Parse(healthCoordinates[1]);
+                    int y = int.Parse(healthCoordinates[0]);
+                    Console.WriteLine("Health Coordinates : X : " + x + " " + " Y : " + y);
+
+                    Cell[][] gridCell = new Cell[10][];
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        gridCell[i] = new Cell[10];
+                    }
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        for (int j = 0; j < 10; j++)
+                        {
+                            if (grid[i][j] == 1)
+                            {
+                                gridCell[i][j] = new Cell(i, j, "Non Movable", null, false);
+                            }
+                            else
+                            {
+                                gridCell[i][j] = new Cell(i, j, "Movable", null, false);
+                            }
+                        }
+                    }
+
+                    gridCell[x][y] = new Cell(x, y, "Movable", null, true);
+
+                    BFS bfs = new BFS();
+                    Console.WriteLine("Tank Coordinates : X : " + TankX + " " + " Y : " + TankY);
+                    ArrayList path = bfs.BFSsearch(gridCell, new Cell(TankX, TankY, "Movable", null, false));
+                    path.Add(new Cell(TankX, TankY, "Movable", null, false));
+
+                    int preRow = 0;
+                    int preCol = 0;
+                    int direction = 0;
+
+                    Stack<string> cmdStack = new Stack<string>();
+
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        Cell pathCell = (Cell)path[i];
+                        int curRow = pathCell.Row;
+                        int curCol = pathCell.Col;
+
+                        if (preRow == curRow)
+                        {
+                            if (preCol < curCol)
+                            {
+                                if (direction != 3)
+                                {
+                                    cmdStack.Push("LEFT#");
+                                }
+                                cmdStack.Push("LEFT#");
+                                direction = 3;
+                            }
+                            else
+                            {
+                                if (direction != 1)
+                                {
+                                    cmdStack.Push("RIGHT#");
+                                }
+                                cmdStack.Push("RIGHT#");
+                                direction = 1;
+                            }
+                        }
+
+                        if (preCol == curCol)
+                        {
+                            if (preRow < curRow)
+                            {
+                                if (direction != 0)
+                                {
+                                    cmdStack.Push("UP#");
+                                }
+                                cmdStack.Push("UP#");
+                                direction = 0;
+                            }
+                            else
+                            {
+                                if (direction != 2)
+                                {
+                                    cmdStack.Push("DOWN#");
+                                }
+                                cmdStack.Push("DOWN#");
+                                direction = 2;
+                            }
+                        }
+
+                        preRow = pathCell.Row;
+                        preCol = pathCell.Col;
+                        Console.WriteLine(pathCell.Row + "  " + pathCell.Col);
+                    }
+
+                    for (int i = 0; i < cmdStack.Count; i++)
+                    {
+                        Console.WriteLine(cmdStack.Peek());
+                        SendCmd(ip, port, cmdStack.Pop());
+                        Thread.Sleep(1200);
+                    }
                 }
             }
-            Queue q = new Queue();
-            start.Distance = 0;
-            q.Enqueue(start);
-            bool found = false;
-            while (q.Count != 0)
-            {
-                Cell current = (Cell)q.Dequeue();
-                ArrayList adjCells = new ArrayList();
-                if (current.Col - 1 != -1)
-                {
-                    adjCells.Add(Grid[current.Row][current.Col - 1]);
-                }
-                if (current.Col + 1 != 10)
-                {
-                    adjCells.Add(Grid[current.Row][current.Col + 1]);
-                }
-                if (current.Row + 1 != 10)
-                {
-                    adjCells.Add(Grid[current.Row + 1][current.Col]);
-                }
-                if (current.Row - 1 != -1)
-                {
-                    adjCells.Add(Grid[current.Row - 1][current.Col]);
-                }
-                for (int j = 0; j < adjCells.Count; j++)
-                {
-                    Cell adj = (Cell)adjCells[j];
-                    if (adj.Distance == 100000 && adj.Value.Equals("Movable"))
-                    {
-                        adj.Distance = current.Distance + 1;
-                        adj.Parent = current;
-                        q.Enqueue(adj);
-                    }
-                    if (adj.IsHealth)
-                    {
-                        healthPack = (Cell)adjCells[j];
-                        found = true;
-                    }
-                    if (found)
-                    {
-                        break;
-                    }
-                }
-                if (found)
-                {
-                    break;
-                }
-            }
-            Cell destination = healthPack;
-
-            while (destination != start)
-            {
-                path.Add(destination);
-                destination = destination.Parent;
-            }
-
-            return path;
-
         }
     }
 
     class Cell
     {
-
         public Cell(int Row, int Col, String value, Cell parent, bool isHealth)
         {
             this.Col = Col;

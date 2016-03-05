@@ -199,8 +199,8 @@
             // 
             // btnJoin
             // 
-            this.btnJoin.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnJoin.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.btnJoin.BackColor = System.Drawing.Color.Black;
+            this.btnJoin.ForeColor = System.Drawing.Color.White;
             this.btnJoin.Location = new System.Drawing.Point(13, 6);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(75, 23);
@@ -1297,8 +1297,8 @@
             // 
             // btnStop
             // 
-            this.btnStop.BackColor = System.Drawing.Color.Red;
-            this.btnStop.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnStop.BackColor = System.Drawing.Color.Black;
+            this.btnStop.ForeColor = System.Drawing.Color.White;
             this.btnStop.Location = new System.Drawing.Point(94, 6);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
