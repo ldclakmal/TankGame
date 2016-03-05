@@ -56,10 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AI\Clock.cs" />
-    <Compile Include="AI\Controller.cs" />
-    <Compile Include="AI\DynamicItem.cs" />
-    <Compile Include="AI\MapItem.cs" />
     <Compile Include="beans\Brick.cs" />
     <Compile Include="beans\Bullet.cs" />
     <Compile Include="beans\Coin.cs" />
@@ -107,7 +103,9 @@
     <Content Include="icon.ico" />
     <None Include="Resources\Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AI\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

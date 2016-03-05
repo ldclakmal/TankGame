@@ -199,14 +199,16 @@
             // 
             // btnJoin
             // 
-            this.btnJoin.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.btnJoin.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnJoin.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.btnJoin.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.btnJoin.Location = new System.Drawing.Point(13, 6);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(75, 23);
             this.btnJoin.TabIndex = 5;
             this.btnJoin.Text = "JOIN";
             this.btnJoin.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.btnJoin.UseCustomBackColor = true;
+            this.btnJoin.UseCustomForeColor = true;
             this.btnJoin.UseSelectable = true;
             this.btnJoin.Click += new System.EventHandler(this.btnJoin_Click);
             // 
@@ -1302,6 +1304,8 @@
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 6;
             this.btnStop.Text = "STOP";
+            this.btnStop.UseCustomBackColor = true;
+            this.btnStop.UseCustomForeColor = true;
             this.btnStop.UseSelectable = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 

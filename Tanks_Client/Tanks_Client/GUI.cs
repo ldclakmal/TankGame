@@ -40,6 +40,9 @@ namespace ClientApplication
         private Boolean isTooQuick;
         private String reply;
 
+        private int TankX;
+        private int TankY;
+
         public GUI()
         {
             InitializeComponent();
@@ -430,7 +433,7 @@ namespace ClientApplication
                     String[] healthCoordinates = details[1].Split(',');
                     int x = int.Parse(healthCoordinates[1]);
                     int y = int.Parse(healthCoordinates[0]);
-                    Console.WriteLine("X : " + x + " " + " Y : " + y);
+                    Console.WriteLine("Health Coordinates : X : " + x + " " + " Y : " + y);
 
                     Cell[][] gridCell = new Cell[10][];
 
@@ -457,8 +460,9 @@ namespace ClientApplication
                     gridCell[x][y] = new Cell(x, y, "Movable", null, true);
 
                     BFS bfs = new BFS();
-                    ArrayList path = bfs.BFSsearch(gridCell, new Cell(0, 0, "Movable", null, false));
-                    path.Add(new Cell(0, 0, "Movable", null, false));
+                    Console.WriteLine("Tank Coordinates : X : " + TankX + " " + " Y : " + TankY);
+                    ArrayList path = bfs.BFSsearch(gridCell, new Cell(TankX, TankY, "Movable", null, false));
+                    path.Add(new Cell(TankX, TankY, "Movable", null, false));
 
                     int preRow = 0;
                     int preCol = 0;
@@ -518,7 +522,7 @@ namespace ClientApplication
 
                         preRow = pathCell.Row;
                         preCol = pathCell.Col;
-                        Console.WriteLine(pathCell.Row + "  " + pathCell.Col + " \n");
+                        Console.WriteLine(pathCell.Row + "  " + pathCell.Col);
                     }
 
                     for (int i = 0; i < cmdStack.Count; i++)
@@ -778,6 +782,9 @@ namespace ClientApplication
                 String _direction = details[1].Split(';')[2];
                 String x = coordinates.Split(',')[0];
                 String y = coordinates.Split(',')[1];
+
+                TankX = int.Parse(x);
+                TankY = int.Parse(y);
 
                 lblPointsP0.Text = details[1].Split(';')[6] + " $";
                 lblCoinsP0.Text = details[1].Split(';')[5] + " $";
