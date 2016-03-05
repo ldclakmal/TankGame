@@ -133,6 +133,11 @@
             this.pos10_1 = new System.Windows.Forms.Label();
             this.pos1_1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnShoot = new System.Windows.Forms.Button();
+            this.btnRight = new System.Windows.Forms.Button();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.btnUp = new System.Windows.Forms.Button();
             this.btnStop = new MetroFramework.Controls.MetroButton();
             this.txtData = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -160,11 +165,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnUp = new System.Windows.Forms.Button();
-            this.btnDown = new System.Windows.Forms.Button();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnShoot = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -1228,6 +1228,71 @@
             this.panel1.Size = new System.Drawing.Size(1037, 35);
             this.panel1.TabIndex = 109;
             // 
+            // btnShoot
+            // 
+            this.btnShoot.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnShoot.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShoot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShoot.Location = new System.Drawing.Point(499, 6);
+            this.btnShoot.Name = "btnShoot";
+            this.btnShoot.Size = new System.Drawing.Size(75, 23);
+            this.btnShoot.TabIndex = 11;
+            this.btnShoot.Text = "SHOOT";
+            this.btnShoot.UseVisualStyleBackColor = false;
+            this.btnShoot.Click += new System.EventHandler(this.btnShoot_Click);
+            // 
+            // btnRight
+            // 
+            this.btnRight.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnRight.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRight.Location = new System.Drawing.Point(418, 6);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(75, 23);
+            this.btnRight.TabIndex = 10;
+            this.btnRight.Text = "RIGHT";
+            this.btnRight.UseVisualStyleBackColor = false;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            // 
+            // btnLeft
+            // 
+            this.btnLeft.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnLeft.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeft.Location = new System.Drawing.Point(337, 6);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(75, 23);
+            this.btnLeft.TabIndex = 9;
+            this.btnLeft.Text = "LEFT";
+            this.btnLeft.UseVisualStyleBackColor = false;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDown.Location = new System.Drawing.Point(256, 6);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(75, 23);
+            this.btnDown.TabIndex = 8;
+            this.btnDown.Text = "DOWN";
+            this.btnDown.UseVisualStyleBackColor = false;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUp.Location = new System.Drawing.Point(175, 6);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(75, 23);
+            this.btnUp.TabIndex = 7;
+            this.btnUp.Text = "UP";
+            this.btnUp.UseVisualStyleBackColor = false;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.Color.Red;
@@ -1595,71 +1660,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Player ID";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnUp
-            // 
-            this.btnUp.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUp.Location = new System.Drawing.Point(175, 6);
-            this.btnUp.Name = "btnUp";
-            this.btnUp.Size = new System.Drawing.Size(75, 23);
-            this.btnUp.TabIndex = 7;
-            this.btnUp.Text = "UP";
-            this.btnUp.UseVisualStyleBackColor = false;
-            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // btnDown
-            // 
-            this.btnDown.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnDown.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDown.Location = new System.Drawing.Point(256, 6);
-            this.btnDown.Name = "btnDown";
-            this.btnDown.Size = new System.Drawing.Size(75, 23);
-            this.btnDown.TabIndex = 8;
-            this.btnDown.Text = "DOWN";
-            this.btnDown.UseVisualStyleBackColor = false;
-            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
-            // 
-            // btnLeft
-            // 
-            this.btnLeft.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnLeft.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeft.Location = new System.Drawing.Point(337, 6);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(75, 23);
-            this.btnLeft.TabIndex = 9;
-            this.btnLeft.Text = "LEFT";
-            this.btnLeft.UseVisualStyleBackColor = false;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
-            // 
-            // btnRight
-            // 
-            this.btnRight.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnRight.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRight.Location = new System.Drawing.Point(418, 6);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(75, 23);
-            this.btnRight.TabIndex = 10;
-            this.btnRight.Text = "RIGHT";
-            this.btnRight.UseVisualStyleBackColor = false;
-            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
-            // 
-            // btnShoot
-            // 
-            this.btnShoot.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnShoot.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnShoot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShoot.Location = new System.Drawing.Point(499, 6);
-            this.btnShoot.Name = "btnShoot";
-            this.btnShoot.Size = new System.Drawing.Size(75, 23);
-            this.btnShoot.TabIndex = 11;
-            this.btnShoot.Text = "SHOOT";
-            this.btnShoot.UseVisualStyleBackColor = false;
-            this.btnShoot.Click += new System.EventHandler(this.btnShoot_Click);
             // 
             // GUI
             // 

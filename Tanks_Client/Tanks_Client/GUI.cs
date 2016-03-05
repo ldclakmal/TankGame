@@ -425,12 +425,12 @@ namespace ClientApplication
             while (true)
             {
                 string[] details = reply.Split(':');
-                if (details[0].Equals("C"))
+                if (details[0].Equals("L"))
                 {
-                    String[] coinCoordinates = details[1].Split(',');
-                    int x = int.Parse(coinCoordinates[1]);
-                    int y = int.Parse(coinCoordinates[0]);
-                    //Console.WriteLine("X : " + x + " " + " Y : " + y);
+                    String[] healthCoordinates = details[1].Split(',');
+                    int x = int.Parse(healthCoordinates[1]);
+                    int y = int.Parse(healthCoordinates[0]);
+                    Console.WriteLine("X : " + x + " " + " Y : " + y);
 
                     Cell[][] gridCell = new Cell[10][];
 
@@ -1595,7 +1595,6 @@ namespace ClientApplication
             {
                 path.Add(destination);
                 destination = destination.Parent;
-
             }
 
             return path;
