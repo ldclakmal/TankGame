@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using ClientApplication;
+using System;
 
 namespace Tanks_Client.AI
 {
@@ -68,12 +69,16 @@ namespace Tanks_Client.AI
             }
             Cell destination = healthPack;
 
-            while (destination != start)
+            try {
+                while (destination != start)
+                {
+                    path.Add(destination);
+                    destination = destination.Parent;
+                }
+            }catch(Exception e)
             {
-                path.Add(destination);
-                destination = destination.Parent;
+                return path;
             }
-
             return path;
 
         }

@@ -465,8 +465,8 @@ namespace ClientApplication
                 Thread.CurrentThread.IsBackground = true;
 
                 String[] locationDetails = details[1].Split(',');
-                Label coin = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
-                coin.Image = new Bitmap("health.jpg");
+                Label health = cellList[int.Parse(locationDetails[1])][int.Parse(locationDetails[0])];
+                health.Image = new Bitmap("health.jpg");
                 LifePack lifePackOb = new LifePack(int.Parse(locationDetails[1]), int.Parse(locationDetails[0]), int.Parse(details[2].Split('#')[0]));
                 lifepackArr.Add(lifePackOb);
 
@@ -476,7 +476,6 @@ namespace ClientApplication
                 currentPositionLabel.BackColor = System.Drawing.Color.White;
                 currentPositionLabel.Image = null;
                 //currentPositionLabel.Refresh();
-
             }).Start();
         }
 
@@ -1423,7 +1422,7 @@ namespace ClientApplication
             while (true)
             {
                 string[] details = reply.Split(':');
-                if (details[0].Equals("L"))
+                if (details[0].Equals("L") || details[0].Equals("C"))
                 {
                     String[] healthCoordinates = details[1].Split(',');
                     int x = int.Parse(healthCoordinates[1]);
@@ -1526,6 +1525,7 @@ namespace ClientApplication
                         SendCmd(ip, port, cmdStack.Pop());
                         Thread.Sleep(1200);
                     }
+
                 }
             }
         }
